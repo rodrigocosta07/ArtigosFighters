@@ -16,13 +16,15 @@ namespace AppEnvioArtigos.DAL
         }
 
         public DbSet<Participante> Participantes { get; set; }
-        public DbSet<Endereco> Enderecos { get; set; }
-        public DbSet<CartaoCredito> CartaoCreditos { get; set; }
-        public DbSet<Artigos> Artigos { get; set; }
+        
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            Database.SetInitializer<ArtigosContext>(null);
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }

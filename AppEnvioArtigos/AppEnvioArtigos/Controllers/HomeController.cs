@@ -10,7 +10,15 @@ namespace AppEnvioArtigos.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login" , "Participantes");
+            }
+            
         }
 
         public ActionResult About()
