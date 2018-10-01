@@ -10,11 +10,18 @@ namespace AppEnvioArtigos.Models
     {
         [Key]
         public int ArtigoID { get; set; }
+
+        [Required]
         public string Nome { get; set; }
+
+        [Required]
+        [Display(Name = "Digite um resumo do artigo")]
         public string ResumoArtigo { get; set; }
-        public byte[] Artigopdf { get; set; }
-        public float NotaArtigo { get; set; }
-        public string ComentarioRevisao { get; set; }
+        
+
+        public virtual Participante Participante { get; set; }
+        public virtual ICollection<AvaliarArtigo> AvaliarArtigos { get; set; }
+        
     }
 
     

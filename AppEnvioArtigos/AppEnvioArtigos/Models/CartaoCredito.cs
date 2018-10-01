@@ -10,7 +10,7 @@ namespace AppEnvioArtigos.Models
     {
         
         
-        public int Numero { get; set; }
+        public string Numero { get; set; }
         
         public DateTime Validade { get; set; }
         

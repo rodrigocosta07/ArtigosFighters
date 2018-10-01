@@ -11,7 +11,9 @@ namespace AppEnvioArtigos.Models
         
        
         public string Rua { get; set; }
-      
+
+        
+        [RegularExpression(@"^\d{8}$|^\d{5}-\d{3}$", ErrorMessage = "O código postal deverá estar no formato 00000000 ou 00000-000")]
         public string Cep { get; set; }
      
         public int Numero { get; set; }

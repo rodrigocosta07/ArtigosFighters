@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AppEnvioArtigos.Models.EnviarArtigo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResumoArtigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArqArtigo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResumoArtigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArqArtigo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtigoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtigoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtigoId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -12,8 +12,7 @@ namespace AppEnvioArtigos.DAL
         {
             var Participantes = new List<Participante>
             {
-            new Participante{Nome="Carson", Email="aa@aaa.com", Senha="321", RepitaSenha="321", LocalParticipacao="lauro", Telefone=2345},
-            new Participante{Nome="Carson", Email="aa@aaa.com", Senha="321", RepitaSenha="321", LocalParticipacao="lauro", Telefone=2345}
+            new Participante{Nome="Carson", NumInscricao= 1231,Email="aa@aaa.com", Senha="321", RepitaSenha="321", LocalParticipacao="lauro", Telefone="2345"}
             };
 
             Participantes.ForEach(s => context.Participantes.Add(s));

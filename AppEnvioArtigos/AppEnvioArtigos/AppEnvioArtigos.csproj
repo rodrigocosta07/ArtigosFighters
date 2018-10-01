@@ -153,6 +153,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArtigoController.cs" />
+    <Compile Include="Controllers\AvaliarArtigoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParticipantesController.cs" />
     <Compile Include="DAL\ArtigosContext.cs" />
@@ -160,10 +162,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Artigos.cs" />
+    <Compile Include="Models\AvaliarArtigo.cs" />
     <Compile Include="Models\CartaoCredito.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Participante.cs" />
+    <Compile Include="Models\Revisor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,7 +196,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -202,15 +209,18 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Participantes\Create.cshtml" />
-    <Content Include="Views\Participantes\Delete.cshtml" />
-    <Content Include="Views\Participantes\Details.cshtml" />
-    <Content Include="Views\Participantes\Edit.cshtml" />
     <Content Include="Views\Participantes\Index.cshtml" />
     <Content Include="Views\Participantes\Login.cshtml" />
+    <Content Include="Views\Artigo\Create.cshtml" />
+    <Content Include="Views\Artigo\Details.cshtml" />
+    <Content Include="Views\Artigo\Index.cshtml" />
+    <Content Include="Views\AvaliarArtigo\Create.cshtml" />
+    <Content Include="Views\AvaliarArtigo\Delete.cshtml" />
+    <Content Include="Views\AvaliarArtigo\Details.cshtml" />
+    <Content Include="Views\AvaliarArtigo\Edit.cshtml" />
+    <Content Include="Views\AvaliarArtigo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

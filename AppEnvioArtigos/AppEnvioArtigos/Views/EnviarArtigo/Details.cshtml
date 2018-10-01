@@ -1,0 +1,42 @@
+﻿@model AppEnvioArtigos.Models.EnviarArtigo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EnviarArtigo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResumoArtigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResumoArtigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArqArtigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArqArtigo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtigoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

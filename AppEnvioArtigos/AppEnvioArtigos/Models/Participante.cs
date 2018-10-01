@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,17 +10,19 @@ namespace AppEnvioArtigos.Models
 {
     public class Participante
     {
-        [Key]
-        public int ParticipanteId { get; set; }
+        public int ParticipanteID { get; set; }
         
         public string Nome { get; set; }
 
-        
-        public int Telefone { get; set; }
+       
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Forneça o número do telefone no formato (000) 00000-0000")]
+        public string Telefone { get; set; }
 
         
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        public int NumInscricao { get; set; }
         
         [Display(Name = "Local De Participação")]
         public string LocalParticipacao { get; set; }
@@ -32,6 +35,10 @@ namespace AppEnvioArtigos.Models
 
         public  Endereco Endereco { get; set; }
         public  CartaoCredito CartaoCredito { get; set; }
+
+        public virtual ICollection<Artigos> ArtigosEnviados { get; set; }
+
+
     }
 
 }

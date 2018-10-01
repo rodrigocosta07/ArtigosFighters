@@ -22,20 +22,6 @@ namespace AppEnvioArtigos.Controllers
             return View(db.Participantes.ToList());
         }
 
-        // GET: Participantes/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Participante participante = db.Participantes.Find(id);
-            if (participante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(participante);
-        }
 
         // GET: Participantes/Create
         public ActionResult Create()
@@ -48,32 +34,45 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ParticipanteId,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
+        public ActionResult Create([Bind(Include = "ParticipanteID,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
         {
             if (ModelState.IsValid)
             {
-                db.Participantes.Add(participante);
+                using (db)
+                {
+                    Random NumInscricao = new Random();
+                    var v = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao));
+                    for (int i = 0; v != null; i++)
+                    {
+                        NumInscricao.Next(1000, 2000);
+                        v = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao));
+                    }
+                    ViewBag.NumInscricao = NumInscricao;
+                        db.Participantes.Add(participante);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                }
+              
+            }
+
+            return View(participante);
+        }
+        /*
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ParticipanteId,Revisor,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Revisor revisor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Participantes.Add(revisor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(participante);
+            return View(revisor);
         }
+        */
 
-        // GET: Participantes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Participante participante = db.Participantes.Find(id);
-            if (participante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(participante);
-        }
 
         public ActionResult Login()
         {
@@ -92,7 +91,7 @@ namespace AppEnvioArtigos.Controllers
                     var v = db.Participantes.Where(a => a.Email.Equals(participante.Email) && participante.Senha.Equals(participante.Senha)).FirstOrDefault();
                     if (v != null)
                     {
-                        Session["usuarioLogadoID"] = v.ParticipanteId.ToString();
+                        Session["usuarioLogadoID"] = v.ParticipanteID.ToString();
                         Session["nomeUsuarioLogado"] = v.Email.ToString();
                         return RedirectToAction("Index", "Home");
                     }
@@ -103,47 +102,6 @@ namespace AppEnvioArtigos.Controllers
             return View(participante);
         }
 
-        // POST: Participantes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ParticipanteId,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(participante).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(participante);
-        }
-
-        // GET: Participantes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Participante participante = db.Participantes.Find(id);
-            if (participante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(participante);
-        }
-
-        // POST: Participantes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Participante participante = db.Participantes.Find(id);
-            db.Participantes.Remove(participante);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
