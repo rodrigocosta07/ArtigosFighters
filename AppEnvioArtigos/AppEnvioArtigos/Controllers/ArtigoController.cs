@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
 
@@ -47,10 +48,12 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ArtigoID,Nome,ResumoArtigo,Artigopdf")] Artigos artigos)
+        public ActionResult Create(Artigos artigos)
         {
             if (ModelState.IsValid)
             {
+                
+
               
                 db.Artigos.Add(artigos);
                 db.SaveChanges();

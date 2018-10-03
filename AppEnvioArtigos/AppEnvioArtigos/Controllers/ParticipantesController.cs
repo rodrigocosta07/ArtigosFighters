@@ -39,18 +39,27 @@ namespace AppEnvioArtigos.Controllers
             if (ModelState.IsValid)
             {
                 using (db)
-                {
+                {/*
                     Random NumInscricao = new Random();
-                    var v = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao));
-                    for (int i = 0; v != null; i++)
+                    var consultaBanco = "";
+                    do
                     {
-                        NumInscricao.Next(1000, 2000);
-                        v = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao));
-                    }
+                        consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao)).ToString();
+
+                        var Cadastro = db.Participantes.Add(participante);
+
+                        if()
+                        {
+
+                        }
+                        //NumInscricao.Next(1000, 2000);
+                    } while (consultaBanco != "");
+
                     ViewBag.NumInscricao = NumInscricao;
-                        db.Participantes.Add(participante);
-                        db.SaveChanges();
-                        return RedirectToAction("Index", "Home");
+                    */
+                    db.Participantes.Add(participante);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
                 }
               
             }

@@ -18,6 +18,8 @@ namespace AppEnvioArtigos.Models
         [Display(Name = "Digite um resumo do artigo")]
         public string ResumoArtigo { get; set; }
         
+        public byte[] Artigopdf { get; set; }
+        public string ContentType { get; set; }
 
         public virtual Participante Participante { get; set; }
         public virtual ICollection<AvaliarArtigo> AvaliarArtigos { get; set; }

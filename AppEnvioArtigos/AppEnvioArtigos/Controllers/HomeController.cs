@@ -9,7 +9,7 @@ namespace AppEnvioArtigos.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {/*
+        {
             if (Session["usuarioLogadoID"] != null)
             {
                 return View();
@@ -17,7 +17,7 @@ namespace AppEnvioArtigos.Controllers
             else
             {
                 return RedirectToAction("Login" , "Participantes");
-            }*/
+            }
             return View();
         }
 
