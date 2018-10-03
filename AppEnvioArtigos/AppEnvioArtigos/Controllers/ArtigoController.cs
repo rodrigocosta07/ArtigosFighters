@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,13 +49,25 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Artigos artigos)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(Artigos artigos , HttpPostedFileBase file)
         {
+            
+            if (Request.Files.Count > 0)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Request.Files[0].InputStream.CopyTo(ms);
+                    byte[] temp = ms.GetBuffer();
+                    if (temp.Length != 0)
+                    {
+                        artigos.Artigopdf = temp;
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
-                
 
-              
                 db.Artigos.Add(artigos);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -18,7 +18,7 @@ namespace AppEnvioArtigos.Controllers
         // GET: Participantes
         public ActionResult Index()
         {
-            
+
             return View(db.Participantes.ToList());
         }
 
@@ -34,34 +34,35 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ParticipanteID,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
+        public ActionResult Create([Bind(Include = "ParticipanteID,NumInscricao,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
         {
             if (ModelState.IsValid)
             {
                 using (db)
-                {/*
-                    Random NumInscricao = new Random();
-                    var consultaBanco = "";
-                    do
+                {
+                    var consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
+                    if(consultaBanco != null)
                     {
-                        consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(NumInscricao)).ToString();
-
-                        var Cadastro = db.Participantes.Add(participante);
-
-                        if()
+                    
+                        do
                         {
+                            participante.NumInscricao++;
+                            consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
+                            
+                            
+                        } while (consultaBanco != null);
+                    }
 
-                        }
-                        //NumInscricao.Next(1000, 2000);
-                    } while (consultaBanco != "");
 
-                    ViewBag.NumInscricao = NumInscricao;
-                    */
-                    db.Participantes.Add(participante);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                        ViewBag.NumInscricao = participante.NumInscricao;
+
+                        db.Participantes.Add(participante);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    
+
                 }
-              
+
             }
 
             return View(participante);
@@ -101,12 +102,13 @@ namespace AppEnvioArtigos.Controllers
                     if (v != null)
                     {
                         Session["usuarioLogadoID"] = v.ParticipanteID.ToString();
-                        Session["nomeUsuarioLogado"] = v.Email.ToString();
+                        Session["EmailUsuarioLogado"] = v.Email.ToString();
+                        Session["NomeUsuarioLogado"] = v.Nome.ToString();
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                    
-                
+
+
             }
             return View(participante);
         }

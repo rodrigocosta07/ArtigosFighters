@@ -12,13 +12,14 @@ namespace AppEnvioArtigos.Controllers
         {
             if (Session["usuarioLogadoID"] != null)
             {
+                ViewBag.usuario = Session["NomeUsuarioLogado"];
                 return View();
             }
             else
             {
                 return RedirectToAction("Login" , "Participantes");
             }
-            return View();
+           
         }
 
     }
