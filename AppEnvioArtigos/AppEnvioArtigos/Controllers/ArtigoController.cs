@@ -13,6 +13,13 @@ using AppEnvioArtigos.Models;
 
 namespace AppEnvioArtigos.Controllers
 {
+    public class ArtigoViewModel
+    {
+        public virtual string Nome { get; set; }
+        public virtual string ResumoArtigo { get; set; }
+        public virtual HttpPostedFileBase Arquivo { get; set; }
+    }
+
     public class ArtigoController : Controller
     {
         private ArtigosContext db = new ArtigosContext();
@@ -41,8 +48,11 @@ namespace AppEnvioArtigos.Controllers
         // GET: Artigo/Create
         public ActionResult Create()
         {
-            return View();
+            ArtigoViewModel model = new ArtigoViewModel();
+            return View(model);
         }
+
+        
 
         // POST: Artigo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -50,30 +60,36 @@ namespace AppEnvioArtigos.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(Artigos artigos , HttpPostedFileBase file)
+        //public ActionResult Create(Artigos artigos , HttpPostedFileBase file)
+        public ActionResult Create(ArtigoViewModel model)
         {
-            
-            if (Request.Files.Count > 0)
+            var artigo = new Artigos
+            {
+                Nome = model.Nome,
+                ResumoArtigo = model.ResumoArtigo
+            };
+
+            if (model.Arquivo != null)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    Request.Files[0].InputStream.CopyTo(ms);
+                    model.Arquivo.InputStream.CopyTo(ms);
                     byte[] temp = ms.GetBuffer();
                     if (temp.Length != 0)
                     {
-                        artigos.Artigopdf = temp;
+                        artigo.Artigopdf = temp;
                     }
                 }
             }
             if (ModelState.IsValid)
             {
 
-                db.Artigos.Add(artigos);
+                db.Artigos.Add(artigo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(artigos);
+            return View(artigo);
         }
 
        
