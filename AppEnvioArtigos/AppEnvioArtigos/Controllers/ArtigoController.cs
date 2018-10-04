@@ -78,12 +78,13 @@ namespace AppEnvioArtigos.Controllers
                     if (temp.Length != 0)
                     {
                         artigo.Artigopdf = temp;
+                        artigo.ContentType = model.Arquivo.ContentType;
                     }
                 }
             }
             if (ModelState.IsValid)
             {
-
+                
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,7 +93,26 @@ namespace AppEnvioArtigos.Controllers
             return View(artigo);
         }
 
-       
+        [HttpGet]
+        public ActionResult Read(int ID)
+        {
+            var article = db.Artigos.Find(ID);
+            return File(article.Artigopdf, "application/pdf");
+        }
+        /*
+        [HttpGet]
+        public FileStreamResult VerArquivo(int id)
+        {
+            using (db)
+            {
+                Artigos artigos = db.Artigos.FirstOrDefault(m => m.ArtigoID == id);
+                MemoryStream ms = new MemoryStream(artigos.Artigopdf);
+                
+                return new FileContentResult(artigos.Artigopdf, "application/pdf");
+            }
+           
+        }*/
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
