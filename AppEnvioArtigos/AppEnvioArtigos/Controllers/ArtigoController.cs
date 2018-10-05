@@ -52,8 +52,7 @@ namespace AppEnvioArtigos.Controllers
             return View(model);
         }
 
-        
-
+       
         // POST: Artigo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -84,20 +83,33 @@ namespace AppEnvioArtigos.Controllers
             }
             if (ModelState.IsValid)
             {
-                
+               
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" , "Home");
             }
 
             return View(artigo);
         }
 
+        public ActionResult DownloadDocumento(long id)
+        {
+            Artigos documento = db.Artigos.Find(id);
+            return File(documento.Artigopdf,"application/pdf", documento.Nome);
+        }
+        /*
         [HttpGet]
         public ActionResult Read(int ID)
         {
-            var article = db.Artigos.Find(ID);
-            return File(article.Artigopdf, "application/pdf");
+            using (db)
+            {
+                Artigos artigos = db.Artigos.FirstOrDefault(m => m.ArtigoID == ID);
+                var base64 = Convert.ToBase64String(artigos.Artigopdf);
+                var book = string.Format("data:application/pdf;base64,{0}", base64);
+                var article = db.Artigos.Find(ID);
+                return File(article.Artigopdf, "application/pdf");
+            }
+            
         }
         /*
         [HttpGet]

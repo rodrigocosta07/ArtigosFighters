@@ -53,7 +53,7 @@ namespace AppEnvioArtigos.Controllers
             {
                 db.AvaliarArtigos.Add(avaliarArtigo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(avaliarArtigo);

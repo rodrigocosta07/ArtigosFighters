@@ -21,7 +21,7 @@ namespace AppEnvioArtigos.Models
         public byte[] Artigopdf { get; set; }
         public string ContentType { get; set; }
 
-        public virtual Participante Participante { get; set; }
+        public virtual ICollection<Participante_Artigos> Participante_Artigos { get; set; }
         public virtual ICollection<AvaliarArtigo> AvaliarArtigos { get; set; }
         
     }

@@ -36,7 +36,7 @@ namespace AppEnvioArtigos.Models
         public  Endereco Endereco { get; set; }
         public  CartaoCredito CartaoCredito { get; set; }
 
-        public virtual ICollection<Artigos> ArtigosEnviados { get; set; }
+        public virtual ICollection<Participante_Artigos> Participante_Artigos { get; set; }
 
 
     }

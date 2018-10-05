@@ -168,6 +168,7 @@
     <Compile Include="Models\CartaoCredito.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Participante.cs" />
+    <Compile Include="Models\Participante_Artigos.cs" />
     <Compile Include="Models\Revisor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
