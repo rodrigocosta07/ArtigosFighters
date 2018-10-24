@@ -8,13 +8,26 @@ using System.Web;
 
 namespace AppEnvioArtigos.Models
 {
+
+   
+
     public class Participante
     {
+
+        public enum Usuario
+        {
+            Participante = 0,
+            Revisor = 1
+
+        }
         public int ParticipanteID { get; set; }
         
         public string Nome { get; set; }
 
        
+       
+        public Usuario Perfil { get; set; }
+
         [DataType(DataType.PhoneNumber, ErrorMessage = "Forneça o número do telefone no formato (000) 00000-0000")]
         public string Telefone { get; set; }
 

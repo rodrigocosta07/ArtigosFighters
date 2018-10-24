@@ -34,7 +34,7 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ParticipanteID,NumInscricao,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
+        public ActionResult Create([Bind(Include = "ParticipanteID,NumInscricao,Perfil,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Participante participante)
         {
             if (ModelState.IsValid)
             {
