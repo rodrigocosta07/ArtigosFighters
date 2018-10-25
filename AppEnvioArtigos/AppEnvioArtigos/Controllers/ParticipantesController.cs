@@ -104,6 +104,7 @@ namespace AppEnvioArtigos.Controllers
                         Session["usuarioLogadoID"] = v.ParticipanteID.ToString();
                         Session["EmailUsuarioLogado"] = v.Email.ToString();
                         Session["NomeUsuarioLogado"] = v.Nome.ToString();
+                        Session["Perfil"] = v.Perfil.ToString();
                         return RedirectToAction("Index", "Home");
                     }
                 }

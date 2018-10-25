@@ -15,9 +15,20 @@
     <h4>Participante</h4>
     <hr />
 
-
-
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <p>Se deseja ser voluntario como Revisor, selecione a opção abaixo:</p>
+        <select data-val="true" data-val-required="perfil"
+                id="Perfil" name="Perfil">
+            <option value="Participante"> Participante</option>
+            <option value="Revisor"> Revisor</option>
+        </select>
+    </div>
+
+
+    <hr />
+
     <div class="form-group">
         @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -86,15 +97,8 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <select data-val="true" data-val-required="perfil"
-                id="Perfil" name="Perfil">
-            <option value="Participante"> Participante</option>
-            <option value="Revisor"> Revisor</option>
-        </select>
-    </div>
 
- 
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" onclick="ConfirmarInscricao()" />
