@@ -26,7 +26,7 @@ namespace AppEnvioArtigos.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            Database.SetInitializer<ArtigosContext>(null);
+            //Database.SetInitializer<ArtigosContext>(null);
 
         }
     }

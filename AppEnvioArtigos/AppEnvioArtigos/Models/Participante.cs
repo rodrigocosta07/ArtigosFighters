@@ -42,8 +42,10 @@ namespace AppEnvioArtigos.Models
     
         
         public string Senha { get; set; }
-        
-        [Display(Name = "Repita a sua senha:")]
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar a senha")]
+        //[Compare("Senha", ErrorMessage = "A senhe e a confirmação da senha são diferentes")]
         public string RepitaSenha { get; set; }
 
         public  Endereco Endereco { get; set; }

@@ -22,7 +22,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                   
+                    @if (Session["usuarioLogadoID"] != null)
+                    {
+                        <li onclick="Logout()"> @Html.ActionLink("Sair", "Login", "Participantes")  </li>
+
+                    }
+
+
                 </ul>
             </div>
         </div>
@@ -38,5 +44,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+    function Logout() {
+        @Session["usuarioLogadoID"] = null;
+    }
+    </script>
+
 </body>
 </html>

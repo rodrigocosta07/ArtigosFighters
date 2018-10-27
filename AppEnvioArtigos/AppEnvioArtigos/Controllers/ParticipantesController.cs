@@ -40,18 +40,26 @@ namespace AppEnvioArtigos.Controllers
             {
                 using (db)
                 {
-                    var consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
-                    if(consultaBanco != null)
+                    var consultaBanco = db.Participantes.Where(model => model.Email.Equals(participante.Email)).FirstOrDefault();
+                    if (consultaBanco != null)
                     {
-                    
-                        do
-                        {
-                            participante.NumInscricao++;
-                            consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
-                            
-                            
-                        } while (consultaBanco != null);
+                        ViewBag.Email = "Email Já cadastrado";
+                        return View(participante);
                     }
+                    else
+                    {
+                        consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
+                        if (consultaBanco != null)
+                        {
+
+                            do
+                            {
+                                participante.NumInscricao++;
+                                consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
+
+
+                            } while (consultaBanco != null);
+                        }
 
 
                         ViewBag.NumInscricao = participante.NumInscricao;
@@ -59,7 +67,9 @@ namespace AppEnvioArtigos.Controllers
                         db.Participantes.Add(participante);
                         db.SaveChanges();
                         return RedirectToAction("Index", "Home");
-                    
+
+                    }
+
 
                 }
 
@@ -67,22 +77,7 @@ namespace AppEnvioArtigos.Controllers
 
             return View(participante);
         }
-        /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ParticipanteId,Revisor,Nome,Telefone,Email,LocalParticipacao,Senha,RepitaSenha,Endereco,CartaoCredito")] Revisor revisor)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Participantes.Add(revisor);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(revisor);
-        }
-        */
-
+    
 
         public ActionResult Login()
         {
@@ -91,7 +86,7 @@ namespace AppEnvioArtigos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include = "Email,Senha,RepitaSenha,Endereco,CartaoCredito")]Participante participante)
+        public ActionResult Login([Bind(Include = "Email,Senha")]Participante participante)
         {
             // esta action trata o post (login)
             if (ModelState.IsValid) //verifica se é válido
@@ -106,6 +101,11 @@ namespace AppEnvioArtigos.Controllers
                         Session["NomeUsuarioLogado"] = v.Nome.ToString();
                         Session["Perfil"] = v.Perfil.ToString();
                         return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.ErroLogin = "Email ou senha invalidos";
+                        return View(participante);
                     }
                 }
 

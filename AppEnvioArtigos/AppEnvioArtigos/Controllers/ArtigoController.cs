@@ -97,33 +97,7 @@ namespace AppEnvioArtigos.Controllers
             Artigos documento = db.Artigos.Find(id);
             return File(documento.Artigopdf,"application/pdf", documento.Nome);
         }
-        /*
-        [HttpGet]
-        public ActionResult Read(int ID)
-        {
-            using (db)
-            {
-                Artigos artigos = db.Artigos.FirstOrDefault(m => m.ArtigoID == ID);
-                var base64 = Convert.ToBase64String(artigos.Artigopdf);
-                var book = string.Format("data:application/pdf;base64,{0}", base64);
-                var article = db.Artigos.Find(ID);
-                return File(article.Artigopdf, "application/pdf");
-            }
-            
-        }
-        /*
-        [HttpGet]
-        public FileStreamResult VerArquivo(int id)
-        {
-            using (db)
-            {
-                Artigos artigos = db.Artigos.FirstOrDefault(m => m.ArtigoID == id);
-                MemoryStream ms = new MemoryStream(artigos.Artigopdf);
-                
-                return new FileContentResult(artigos.Artigopdf, "application/pdf");
-            }
-           
-        }*/
+       
 
         protected override void Dispose(bool disposing)
         {

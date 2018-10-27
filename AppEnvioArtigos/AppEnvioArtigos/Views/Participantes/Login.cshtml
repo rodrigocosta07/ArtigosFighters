@@ -16,7 +16,9 @@
             @ViewBag.Message
         </div>
     }
+
     <table>
+        @ViewBag.ErroLogin
         <tr>
             <td>@Html.LabelFor(model => model.Email)</td>
             <td>@Html.TextBoxFor(model => model.Email)</td>
@@ -35,12 +37,14 @@
             </td>
             <td></td>
 
-            
+
         </tr>
-        
+
     </table>
 
 }
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

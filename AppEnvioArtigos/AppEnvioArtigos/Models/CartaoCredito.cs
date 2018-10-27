@@ -11,7 +11,8 @@ namespace AppEnvioArtigos.Models
         
         
         public string Numero { get; set; }
-        
+
+      
         public DateTime Validade { get; set; }
         
         public string Marca { get; set; }
