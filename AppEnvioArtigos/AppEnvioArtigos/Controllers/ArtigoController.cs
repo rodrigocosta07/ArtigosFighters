@@ -83,7 +83,11 @@ namespace AppEnvioArtigos.Controllers
             }
             if (ModelState.IsValid)
             {
-               
+                var id = Session["usuarioLogadoID"];
+                List<Participante> listParticipante = new List<Participante>();
+                var participante = db.Participantes.Find(id);
+                listParticipante.Add(participante);
+                artigo.Participantes = listParticipante;
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
                 return RedirectToAction("Index" , "Home");

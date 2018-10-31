@@ -16,10 +16,10 @@ namespace AppEnvioArtigos.DAL
         }
 
         public DbSet<Participante> Participantes { get; set; }
-        public DbSet<Revisor> Revisores { get; set; }
+        
         public DbSet<Artigos> Artigos { get; set; }
         public DbSet<AvaliarArtigo> AvaliarArtigos { get; set; }
-        public DbSet<Participante_Artigos> Participante_Artigos { get; set; }
+       
         
 
 

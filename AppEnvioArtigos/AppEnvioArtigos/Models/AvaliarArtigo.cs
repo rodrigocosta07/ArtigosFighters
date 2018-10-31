@@ -19,6 +19,6 @@ namespace AppEnvioArtigos.Models
         [Display(Name = "Envie um comentario sobre o artigo:")]
         public string ComentarioRevisao { get; set; }
 
-        public virtual Artigos Artigos { get; set; }
+        public virtual ICollection<Artigos> Artigos { get; set; }
     }
 }

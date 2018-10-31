@@ -13,12 +13,12 @@ namespace AppEnvioArtigos.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810232347566_initial"; }
+            get { return "201810302347231_initial"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target
