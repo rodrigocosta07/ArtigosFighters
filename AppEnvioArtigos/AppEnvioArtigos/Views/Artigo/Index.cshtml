@@ -15,6 +15,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Participantes)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
@@ -28,24 +31,24 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResumoArtigo)
-            </td>
-            <td>
-                <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResumoArtigo)
+        </td>
+        <td>
+            <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
-            </td>
-            <td>
-                
-                @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo")|
-                @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ArtigoID })
-            </td>
-        </tr>
+        </td>
+        <td>
+
+            @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo")|
+            @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ArtigoID })
+        </td>
+    </tr>
     }
 
 </table>

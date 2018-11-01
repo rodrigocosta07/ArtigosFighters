@@ -83,9 +83,9 @@ namespace AppEnvioArtigos.Controllers
             }
             if (ModelState.IsValid)
             {
-                var id = Session["usuarioLogadoID"];
+                var id = Session["usuarioLogadoID"].ToString();
                 List<Participante> listParticipante = new List<Participante>();
-                var participante = db.Participantes.Find(id);
+                Participante participante = db.Participantes.Find(int.Parse(id));
                 listParticipante.Add(participante);
                 artigo.Participantes = listParticipante;
                 db.Artigos.Add(artigo);
