@@ -37,9 +37,13 @@ namespace AppEnvioArtigos.Controllers
         }
 
         // GET: AvaliarArtigo/Create
-        public ActionResult Create()
+        public ActionResult Create(int? artigo)
         {
-            return View();
+            AvaliarArtigo avaliar = new AvaliarArtigo();
+            avaliar.Artigos = new Artigos();
+            avaliar.Artigos.ArtigoID = artigo.GetValueOrDefault();
+            return View(avaliar);
+
         }
 
         // POST: AvaliarArtigo/Create
@@ -47,14 +51,12 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AvaliacaoID,NotaArtigo,ComentarioRevisao")] AvaliarArtigo avaliarArtigo)
+        public ActionResult Create(AvaliarArtigo avaliarArtigo)
         {
             if (ModelState.IsValid)
             {
 
-                var id = Session["ArtigoId"].ToString();
-                Artigos artigos = db.Artigos.Find(int.Parse(id));
-                avaliarArtigo.Artigos = artigos;
+                
                 db.AvaliarArtigos.Add(avaliarArtigo);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

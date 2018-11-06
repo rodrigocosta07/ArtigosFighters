@@ -10,7 +10,8 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(x => x.Artigos.ArtigoID, Model.Artigos.ArtigoID)
+    <p>Id do artigo: @Model.Artigos.ArtigoID</p>
 <div class="form-horizontal">
     <h4>AvaliarArtigo</h4>
     <hr />

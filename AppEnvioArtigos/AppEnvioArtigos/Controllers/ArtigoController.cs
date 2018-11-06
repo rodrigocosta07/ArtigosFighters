@@ -30,7 +30,9 @@ namespace AppEnvioArtigos.Controllers
         // GET: Artigo
         public ActionResult Index()
         {
-            return View(db.Artigos.ToList());
+            var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+
+            return View(listAtigo);
         }
 
         // GET: Artigo/Details/5
