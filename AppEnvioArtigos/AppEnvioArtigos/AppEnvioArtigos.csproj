@@ -166,6 +166,14 @@
     <Compile Include="Migrations\201810302347231_initial.Designer.cs">
       <DependentUpon>201810302347231_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811031506228_novasclasses.cs" />
+    <Compile Include="Migrations\201811031506228_novasclasses.Designer.cs">
+      <DependentUpon>201811031506228_novasclasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811031715571_newAlteracaoClasse.cs" />
+    <Compile Include="Migrations\201811031715571_newAlteracaoClasse.Designer.cs">
+      <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Artigos.cs" />
     <Compile Include="Models\AvaliarArtigo.cs" />
@@ -246,6 +254,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810302347231_initial.resx">
       <DependentUpon>201810302347231_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031506228_novasclasses.resx">
+      <DependentUpon>201811031506228_novasclasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811031715571_newAlteracaoClasse.resx">
+      <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

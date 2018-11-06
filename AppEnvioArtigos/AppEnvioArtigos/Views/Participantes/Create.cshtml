@@ -102,7 +102,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" onclick="ConfirmarInscricao()" />
+            <input type="submit" value="Create" class="btn btn-default" onclick="javascript:ConfirmarInscricao()" />
         </div>
     </div>
 </div>
@@ -114,8 +114,8 @@
 
 <script>
     function ConfirmarInscricao() {
-        alert("Inscrição Confirmada! \n" + "Seu Numero de inscrição é: " + @ViewBag.NumInscricao);
-        @Html.ActionLink("Voltar Para Tela de Login", "Login")
+        return alert("Inscrição Confirmada! \n" + "Seu Numero de inscrição é: " + @ViewBag.NumInscricao);
+        @Html.ActionLink("Voltar Para Tela de Login", "Login")   
     }
 </script>
 @section Scripts {

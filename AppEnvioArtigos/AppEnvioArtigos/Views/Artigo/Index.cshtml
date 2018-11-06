@@ -2,8 +2,7 @@
 
 @{
 
-
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Artigos";
 }
 <h2>Index</h2>
 
@@ -15,13 +14,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Participantes)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResumoArtigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Artigopdf)
@@ -35,6 +34,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero)
+        </th>
         <td>
             @Html.DisplayFor(modelItem => item.ResumoArtigo)
         </td>
@@ -42,11 +44,13 @@
             <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
         </td>
+
         <td>
 
-            @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo")|
+            @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", Session["ArtigoId"] = item.ArtigoID)|
             @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.ArtigoID })
+
         </td>
     </tr>
     }
@@ -57,3 +61,4 @@
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
     }
 </script>  
+

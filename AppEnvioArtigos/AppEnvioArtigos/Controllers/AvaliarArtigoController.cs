@@ -52,11 +52,9 @@ namespace AppEnvioArtigos.Controllers
             if (ModelState.IsValid)
             {
 
-                /*
-                List<Artigos> listArtigos = new List<Artigos>();
-                //Artigos artigos = db.Artigos.Find(int.Parse(id));
-                listArtigos.Add(artigos);
-                avaliarArtigo.Artigos = listArtigos;*/
+                var id = Session["ArtigoId"].ToString();
+                Artigos artigos = db.Artigos.Find(int.Parse(id));
+                avaliarArtigo.Artigos = artigos;
                 db.AvaliarArtigos.Add(avaliarArtigo);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

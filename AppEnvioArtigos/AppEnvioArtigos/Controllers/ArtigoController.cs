@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
+using static AppEnvioArtigos.Models.Artigos;
 
 namespace AppEnvioArtigos.Controllers
 {
@@ -17,7 +18,9 @@ namespace AppEnvioArtigos.Controllers
     {
         public virtual string Nome { get; set; }
         public virtual string ResumoArtigo { get; set; }
+        public virtual Generos Genero { get; set; }
         public virtual HttpPostedFileBase Arquivo { get; set; }
+        
     }
 
     public class ArtigoController : Controller
@@ -65,7 +68,9 @@ namespace AppEnvioArtigos.Controllers
             var artigo = new Artigos
             {
                 Nome = model.Nome,
-                ResumoArtigo = model.ResumoArtigo
+                ResumoArtigo = model.ResumoArtigo,
+                Genero = model.Genero
+                
             };
 
             if (model.Arquivo != null)
