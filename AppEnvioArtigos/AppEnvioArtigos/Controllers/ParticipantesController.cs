@@ -100,7 +100,7 @@ namespace AppEnvioArtigos.Controllers
                         Session["EmailUsuarioLogado"] = v.Email.ToString();
                         Session["NomeUsuarioLogado"] = v.Nome.ToString();
                         Session["Perfil"] = v.Perfil.ToString();
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Artigo");
                     }
                     else
                     {

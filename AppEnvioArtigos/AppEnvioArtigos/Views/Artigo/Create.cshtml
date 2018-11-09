@@ -2,11 +2,11 @@
 
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Enviar Artigo";
     
 }
 
-<h2>Create</h2>
+<h2>Envie seu Artigo</h2>
 
 
 @using (Html.BeginForm("Create", "Artigo", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -14,15 +14,15 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Artigos</h4>
+   
     <hr />
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
 
-        <p>Genero do artigo:</p>
-        <div>
+        <h4 class="col-md-2">Selecione o genero:</h4>
+        <div class="col-md-10">
             <select data-val="true" data-val-required="genero"
                     id="Genero" name="Genero">
                 <option value="Tecnologia"> Tecnologia</option>
@@ -33,6 +33,7 @@
 
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -40,8 +41,6 @@
             @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.ResumoArtigo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -51,20 +50,14 @@
         </div>
     </div>
 
-
-
     <div class="form-group">
-        <label for="file">Artigo em PDF</label>
-        <input style="font-size: 14px" id="Arquivo" name="Arquivo" type="file">
+            <label class="col-md-2" for="file">Artigo em PDF</label>
+            <input class="col-md-10" style="font-size: 14px" id="Arquivo" name="Arquivo" type="file">    
     </div>
-
-
-
-
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Enviar" class="btn btn-default" />
         </div>
     </div>
 </div>

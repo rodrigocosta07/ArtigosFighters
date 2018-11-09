@@ -4,7 +4,6 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
 @using (Html.BeginForm())
 {
     //cria a tag do formulário
@@ -17,31 +16,38 @@
         </div>
     }
 
-    <table>
+        <h1 class="txtAF">Artigos Fighters</h1>
+    <table class="tblLogin">
         @ViewBag.ErroLogin
         <tr>
             <td>@Html.LabelFor(model => model.Email)</td>
-            <td>@Html.TextBoxFor(model => model.Email)</td>
+            <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
             <td>@Html.ValidationMessageFor(model => model.Email)</td>
         </tr>
         <tr>
             <td> @Html.LabelFor(a => a.Senha)</td>
-            <td> @Html.PasswordFor(a => a.Senha) </td>
+            <td> @Html.PasswordFor(a => a.Senha, new { @class = "form-control" }) </td>
             <td> @Html.ValidationMessageFor(a => a.Senha) </td>
         </tr>
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Login" />
-                <button>@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
+                <br />
+                <input type="submit" value="Login" class="btn btn-default" />
+                <button class="btn btn-default">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
             </td>
             <td></td>
-
-
         </tr>
 
     </table>
 
+
+
+
+    <p>
+        <img src="~/Img/street-fighter-hd-png-4088605256-41b510e024-o-png-1025.png" align="right" id="ImgLoginRyu" />    
+    </p>
+    
 }
 
 

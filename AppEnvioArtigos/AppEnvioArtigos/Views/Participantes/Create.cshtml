@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Cadastro</h2>
+<h2 class="test">Cadastro</h2>
 
 
 @using (Html.BeginForm())
@@ -68,7 +68,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.PasswordFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -76,7 +76,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.RepitaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.PasswordFor(model => model.RepitaSenha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.PasswordFor(model => model.RepitaSenha, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.RepitaSenha, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -102,7 +102,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" onclick="javascript:ConfirmarInscricao()" />
+            <input type="submit" value="Cadastrar" class="btn btn-default" onclick="javascript:ConfirmarInscricao()" />
         </div>
     </div>
 </div>

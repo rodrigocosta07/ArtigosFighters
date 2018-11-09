@@ -4,13 +4,20 @@
 
     ViewBag.Title = "Artigos";
 }
-<h2>Index</h2>
+<h2>Artigos</h2>
 
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Envie seu Artigo", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+<p>Genero</p> @Html.DropDownList("Genero", new SelectList(ViewBag.Genero))
+    <input type="submit" value="Procurar" />
+}
+
 <table class="table">
     <tr>
         <th>
@@ -25,37 +32,37 @@
         <th>
             @Html.DisplayNameFor(model => model.Artigopdf)
         </th>
-        <th></th>
+
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayNameFor(model => model.ResumoArtigo)
-        </td>
-        <td>
-            @Html.DisplayNameFor(model => model.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResumoArtigo)
-        </td>
-        <td>
-            <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.ResumoArtigo)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResumoArtigo)
+            </td>
+            <td>
+                <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
-        </td>
+            </td>
 
-        <td>
+            <td>
 
-            @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
-            @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ArtigoID })
+                @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
+                @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ArtigoID })
 
-        </td>
-    </tr>
+            </td>
+        </tr>
     }
 
 </table>
@@ -63,5 +70,5 @@
     function downloadArquivo(id) {
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
     }
-</script>  
+</script>
 

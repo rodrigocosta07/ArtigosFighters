@@ -23,3 +23,19 @@ textarea {
     max-width: 280px;
 }
 
+.txtAF{
+    font-family:'Times New Roman', Times, serif;
+    font-size:70px;
+    color: red;
+    text-align:center;
+}
+
+.tblLogin{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#ImgLoginRyu{
+    width:500px;
+    
+}

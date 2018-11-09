@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -17,6 +18,7 @@ namespace AppEnvioArtigos.Controllers
     public class ArtigoViewModel
     {
         public virtual string Nome { get; set; }
+        [Display(Name = "Digite um resumo do artigo")]
         public virtual string ResumoArtigo { get; set; }
         public virtual Generos Genero { get; set; }
         public virtual HttpPostedFileBase Arquivo { get; set; }
@@ -30,9 +32,17 @@ namespace AppEnvioArtigos.Controllers
         // GET: Artigo
         public ActionResult Index()
         {
-            var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+            /*
+            ViewBag.Genero = (from c in db.Artigos
+                               select c.Genero).Distinct();
 
-            return View(listAtigo);
+            var model = from c in db.Artigos
+                        orderby c.Genero
+                        where c.Genero == Generos || pais.Equals(null) || pais.Equals("")
+                        select c;
+            var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+            */
+            return View();
         }
 
         // GET: Artigo/Details/5
