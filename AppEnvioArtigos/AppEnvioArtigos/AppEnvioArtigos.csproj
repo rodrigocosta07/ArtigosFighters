@@ -179,6 +179,7 @@
     <Compile Include="Models\AvaliarArtigo.cs" />
     <Compile Include="Models\CartaoCredito.cs" />
     <Compile Include="Models\Endereco.cs" />
+    <Compile Include="Models\EnumExtensions.cs" />
     <Compile Include="Models\Participante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

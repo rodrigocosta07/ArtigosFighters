@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Web;
+
 
 namespace AppEnvioArtigos.Models
 {
     public class Artigos
     {
+
         public enum Generos
         {
             Tecnologia = 0,
