@@ -174,12 +174,15 @@
     <Compile Include="Migrations\201811031715571_newAlteracaoClasse.Designer.cs">
       <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811121244231_teste.cs" />
+    <Compile Include="Migrations\201811121244231_teste.Designer.cs">
+      <DependentUpon>201811121244231_teste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Artigos.cs" />
     <Compile Include="Models\AvaliarArtigo.cs" />
     <Compile Include="Models\CartaoCredito.cs" />
     <Compile Include="Models\Endereco.cs" />
-    <Compile Include="Models\EnumExtensions.cs" />
     <Compile Include="Models\Participante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -262,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811031715571_newAlteracaoClasse.resx">
       <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811121244231_teste.resx">
+      <DependentUpon>201811121244231_teste.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

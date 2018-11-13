@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
 using static AppEnvioArtigos.Models.Artigos;
-using static AppEnvioArtigos.Models.EnumExtensions;
+
 
 namespace AppEnvioArtigos.Controllers
 {
@@ -31,24 +31,17 @@ namespace AppEnvioArtigos.Controllers
         private ArtigosContext db = new ArtigosContext();
 
         // GET: Artigo
-        public ActionResult Index()
+        public ActionResult Index(string Pesquisa )
         {
-            /*
-            if (!String.IsNullOrEmpty(Genero))
-            {
-               genero = db.Artigos.Where(s => s.Generos.().Contains(Genero.ToUpper())
-                                       || s.FirstMidName.ToUpper().Contains(Genero.ToUpper()));
-            }
-            /*
-            ViewBag.Genero = (from c in db.Artigos
-                               select c.Genero).Distinct();
+           
+            //  var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+            var consulta = db.Artigos.AsQueryable();
+            if (!string.IsNullOrEmpty(Pesquisa))
+                consulta = consulta.Where(c => c.Nome.Contains(Pesquisa));
+            consulta = consulta.OrderBy(c => c.Nome);
 
-            var model = from c in db.Artigos
-                        orderby c.Genero
-                        where c.Genero == Generos || pais.Equals(null) || pais.Equals("")
-                        select c;*/
-          //  var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
-            return View(db.Artigos.ToList());
+            return View(consulta.ToList());
+            
         }
 
         // GET: Artigo/Details/5

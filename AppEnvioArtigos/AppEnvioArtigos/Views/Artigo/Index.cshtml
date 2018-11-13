@@ -11,21 +11,36 @@
 <p>
     @Html.ActionLink("Envie seu Artigo", "Create")
 </p>
+<hr />
 
 @using (Html.BeginForm())
 {
-    <p>
-        <select data-val="true" data-val-required="genero"
-                id="Genero" name="Genero">
-            <option value="Tecnologia"> Tecnologia</option>
-            <option value="Ciencia"> Ciencia</option>
-            <option value="Medicina"> Medicina</option>
-            <option value="Historia"> Historia</option>
-        </select>
-        <input type="submit" value="Filtrar"/>
-    </p>
+<div>
+
+    Pesquisar Por Nome:
+    @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
+    {
+        @Html.TextBox("Pesquisa")
+        <input type="submit" value="Pesquisar" /> 
+        
+        
+        
+            <select data-val="true" data-val-required="genero"
+                    id="Genero" name="Genero">
+                <option value="Tecnologia"> Tecnologia</option>
+                <option value="Ciencia"> Ciencia</option>
+                <option value="Medicina"> Medicina</option>
+                <option value="Historia"> Historia</option> 
+                <input type="submit" value="Filtrar" />
+            </select>
+       
+    }
+
+
+</div>
 
 }
+<hr />
 
 <table class="table">
     <tr>
@@ -46,27 +61,27 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelIodel => item.ResumoArtigo))
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero)
-        </td>
-        <td>
-            <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelIodel => item.ResumoArtigo))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
-        </td>
-        
-        <td>
+            </td>
 
-            @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
-            @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
-        </td>
-    </tr>
+            <td>
+
+                @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
+                @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
+            </td>
+        </tr>
     }
 
 </table>
@@ -75,4 +90,5 @@
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
     }
 </script>
+
 
