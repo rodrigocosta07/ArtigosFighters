@@ -13,7 +13,7 @@
     @Html.HiddenFor(x => x.Artigos.ArtigoID, Model.Artigos.ArtigoID)
   
 <div class="form-horizontal">
-    <h3>Avalie Artigo</h3>
+    <h3>Avalie o Artigo</h3>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -45,7 +45,7 @@
 }
 
     <div>
-        @Html.ActionLink("Voltar a Tela Principal", "Index", "Home")
+        @Html.ActionLink("Cancelar", "Index", "Artigo")
     </div>
 
 @section Scripts {

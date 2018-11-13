@@ -81,6 +81,7 @@ namespace AppEnvioArtigos.Controllers
 
         public ActionResult Login()
         {
+            Session["usuarioLogadoID"] = null;
             return View();
         }
 

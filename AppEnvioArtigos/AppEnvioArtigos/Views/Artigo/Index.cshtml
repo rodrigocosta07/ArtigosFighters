@@ -4,7 +4,8 @@
 
     ViewBag.Title = "Artigos";
 }
-<h2>Artigos</h2>
+<h3>Bem vindo @ViewBag.usuario</h3> <br />
+<h2>Artigos </h2>
 
 
 
@@ -15,29 +16,29 @@
 
 @using (Html.BeginForm())
 {
-<div>
+    <div>
 
-    Pesquisar Por Nome:
-    @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
-    {
-        @Html.TextBox("Pesquisa")
-        <input type="submit" value="Pesquisar" /> 
-        
-        
-        
+        Pesquisar Por Nome:
+        @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
+        {
+            @Html.TextBox("Pesquisa")
+            <input type="submit" value="Pesquisar" />
+
+
+
             <select data-val="true" data-val-required="genero"
                     id="Genero" name="Genero">
                 <option value="Tecnologia"> Tecnologia</option>
                 <option value="Ciencia"> Ciencia</option>
                 <option value="Medicina"> Medicina</option>
-                <option value="Historia"> Historia</option> 
+                <option value="Historia"> Historia</option>
                 <input type="submit" value="Filtrar" />
             </select>
-       
-    }
+
+        }
 
 
-</div>
+    </div>
 
 }
 <hr />
@@ -80,6 +81,7 @@
 
                 @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
                 @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
+                <a href="#" class="btn btn-default btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
             </td>
         </tr>
     }
@@ -92,3 +94,34 @@
 </script>
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="teste"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $.ajaxSetup({ cache: false });
+
+            $(".btnDetalhes").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#teste").load("/AvaliarArtigo/Create/" + id, function () {
+                    $('#myModal').modal("show");
+                });
+            });
+        });
+
+    </script>
+
+}

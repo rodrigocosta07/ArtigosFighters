@@ -9,30 +9,34 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Artigos Fighters", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    @if (Session["usuarioLogadoID"] != null)
-                    {
-                        <li onclick="Logout()"> @Html.ActionLink("Sair", "Login", "Participantes")  </li>
+    @if (Session["usuarioLogadoID"] != null)
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Artigos Fighters", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                        @if (Session["usuarioLogadoID"] != null)
+                        {
+                            <li> @Html.ActionLink("Sair", "Login", "Participantes")  </li>
 
-                    }
+                        }
 
 
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    }
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -44,12 +48,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    <script>
-    function Logout() {
-        @Session["usuarioLogadoID"] = null;
-    }
-    </script>
 
 </body>
 </html>

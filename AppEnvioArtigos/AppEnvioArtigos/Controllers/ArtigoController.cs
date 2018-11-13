@@ -33,14 +33,22 @@ namespace AppEnvioArtigos.Controllers
         // GET: Artigo
         public ActionResult Index(string Pesquisa )
         {
-           
-            //  var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
-            var consulta = db.Artigos.AsQueryable();
-            if (!string.IsNullOrEmpty(Pesquisa))
-                consulta = consulta.Where(c => c.Nome.Contains(Pesquisa));
-            consulta = consulta.OrderBy(c => c.Nome);
+            if (Session["usuarioLogadoID"] != null)
+            {
+                ViewBag.usuario = Session["NomeUsuarioLogado"];
+                //  var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                var consulta = db.Artigos.AsQueryable();
+                if (!string.IsNullOrEmpty(Pesquisa))
+                    consulta = consulta.Where(c => c.Nome.Contains(Pesquisa));
+                consulta = consulta.OrderBy(c => c.Nome);
 
-            return View(consulta.ToList());
+                return View(consulta.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Participantes");
+            }
+            
             
         }
 

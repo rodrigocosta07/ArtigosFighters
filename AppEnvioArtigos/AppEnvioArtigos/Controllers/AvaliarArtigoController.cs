@@ -44,7 +44,7 @@ namespace AppEnvioArtigos.Controllers
             avaliar.Artigos.ArtigoID = artigo.GetValueOrDefault();
             avaliar.Artigos.Nome = artigo.ToString();
             avaliar.Artigos.ResumoArtigo = artigo.ToString();
-            return View(avaliar);
+            return PartialView(avaliar);
 
         }
 
@@ -56,9 +56,7 @@ namespace AppEnvioArtigos.Controllers
         public ActionResult Create(AvaliarArtigo avaliarArtigo)
         {
             if (ModelState.IsValid)
-            {
-
-                
+            { 
                 db.AvaliarArtigos.Add(avaliarArtigo);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Artigo");
