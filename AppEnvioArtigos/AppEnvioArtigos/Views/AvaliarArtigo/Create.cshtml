@@ -1,4 +1,4 @@
-﻿@model AppEnvioArtigos.Models.AvaliarArtigo
+﻿@model AppEnvioArtigos.Models.ViewModel.AvaliacaoViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -10,7 +10,7 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(x => x.Artigos.ArtigoID, Model.Artigos.ArtigoID)
+    @Html.HiddenFor(x => x.ArtigoId, Model.ArtigoId)
   
 <div class="form-horizontal">
     <h3>Avalie o Artigo</h3>

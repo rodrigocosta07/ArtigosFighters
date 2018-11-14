@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
+using AppEnvioArtigos.Models.ViewModel;
 
 namespace AppEnvioArtigos.Controllers
 {
@@ -36,14 +37,13 @@ namespace AppEnvioArtigos.Controllers
             return View(avaliarArtigo);
         }
 
-        // GET: AvaliarArtigo/Create
+        // GET: AvaliarArtigo/Create/1
         public ActionResult Create(int? artigo)
         {
-            AvaliarArtigo avaliar = new AvaliarArtigo();
-            avaliar.Artigos = new Artigos();
-            avaliar.Artigos.ArtigoID = artigo.GetValueOrDefault();
-            avaliar.Artigos.Nome = artigo.ToString();
-            avaliar.Artigos.ResumoArtigo = artigo.ToString();
+            AvaliacaoViewModel avaliar = new AvaliacaoViewModel();
+            
+            avaliar.ArtigoId = artigo.GetValueOrDefault();
+            
             return PartialView(avaliar);
 
         }
@@ -53,11 +53,20 @@ namespace AppEnvioArtigos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AvaliarArtigo avaliarArtigo)
+        public ActionResult Create(AvaliacaoViewModel avaliarArtigo)
         {
+            var avaliacao = new AvaliarArtigo
+            {
+
+                Artigos = db.Artigos.Find(avaliarArtigo.ArtigoId),
+                ComentarioRevisao = avaliarArtigo.ComentarioRevisao,
+                NotaArtigo = avaliarArtigo.NotaArtigo,
+                
+
+            };
             if (ModelState.IsValid)
             { 
-                db.AvaliarArtigos.Add(avaliarArtigo);
+                db.AvaliarArtigos.Add(avaliacao);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Artigo");
             }
