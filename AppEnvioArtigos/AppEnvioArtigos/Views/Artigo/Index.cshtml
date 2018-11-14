@@ -2,93 +2,94 @@
 
 @{
 
-    ViewBag.Title = "Artigos";
+	ViewBag.Title = "Artigos";
 }
-<h3>Bem vindo, @ViewBag.usuario.</h3> <br />
-<h2>Artigos </h2>
+<h3 class="txtbemvindo"><b>Bem vindo, @ViewBag.usuario.<b></h3> 
+<br />
+<h2 class="txtartigo"><b>Artigo</b></h2>
+
+
+
+
+<p> <img src="~/Img/chunli.png" id="imgchu" align="right" style="position: relative;" margin-top: 150%; width="300px" /> </p>
 
 
 <p>
-	<img src="~/Img/chunli.png" align="right" id="ImgChuli" style="position: relative; margin-top: -70%;" />
-</p>
-
-
-<p>
-    @Html.ActionLink("Envie o Artigo", "Create")
+	@Html.ActionLink("Envie o Artigo", "Create")
 </p>
 <hr />
 
 @using (Html.BeginForm())
 {
-    <div>
+	<div>
 
-        Pesquisar:
-        @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
-        {
-            @Html.TextBox("Pesquisa")
-            <input type="submit" value="Pesquisar" />
-
-
-
-            <select data-val="true" data-val-required="genero"
-                    id="Genero" name="Genero">
-                <option value="Tecnologia"> Tecnologia</option>
-                <option value="Ciencia"> Ciencia</option>
-                <option value="Medicina"> Medicina</option>
-                <option value="Historia"> Historia</option>
-                <input type="submit" value="Filtrar" />
-            </select>
-
-        }
+		Pesquisar:
+		@using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
+		{
+			@Html.TextBox("Pesquisa")
+			<input type="submit" value="Pesquisar" />
 
 
-    </div>
+
+			<select data-val="true" data-val-required="genero"
+					id="Genero" name="Genero">
+				<option value="Tecnologia"> Tecnologia</option>
+				<option value="Ciencia"> Ciencia</option>
+				<option value="Medicina"> Medicina</option>
+				<option value="Historia"> Historia</option>
+				<input type="submit" value="Filtrar" />
+			</select>
+
+		}
+
+
+	</div>
 
 }
 <hr />
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            <p>Resumo</p>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Artigopdf)
-        </th>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Nome)
+		</th>
+		<th>
+			<p>Resumo</p>
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Genero)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Artigopdf)
+		</th>
 
-    </tr>
+	</tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelIodel => item.ResumoArtigo))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero)
-            </td>
-            <td>
-                <button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Nome)
+			</td>
+			<td>
+				@Html.DisplayFor(modelIodel => item.ResumoArtigo))
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Genero)
+			</td>
+			<td>
+				<button id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
-            </td>
+			</td>
 
-            <td>
+			<td>
 
-                @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
-                @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
-                <a href="#" class="btn btn-default btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
-            </td>
-        </tr>
-    }
+				@Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)|
+				@Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) |
+				<a href="#" class="btn btn-default btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
+			</td>
+		</tr>
+	}
 
 </table>
 <script>
@@ -99,34 +100,34 @@
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="teste"></div>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div id="teste"></div>
+			</div>
+		</div>
+	</div>
 </div>
 
 @section scripts{
 
-    <script type="text/javascript">
+	<script type="text/javascript">
 
-        $(document).ready(function () {
+		$(document).ready(function () {
 
-            $.ajaxSetup({ cache: false });
+			$.ajaxSetup({ cache: false });
 
-            $(".btnDetalhes").click(function () {
+			$(".btnDetalhes").click(function () {
 
-                var id = $(this).data("value");
-                alert(id);
+				var id = $(this).data("value");
+				alert(id);
 
-                $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
-                    $('#myModal').modal("show");
-                });
-            });
-        });
+				$("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
+					$('#myModal').modal("show");
+				});
+			});
+		});
 
-    </script>
+	</script>
 
 }
