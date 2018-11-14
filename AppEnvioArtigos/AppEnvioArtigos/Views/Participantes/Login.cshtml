@@ -16,16 +16,18 @@
         </div>
     }
 
-        <h1 class="txtAF">Artigos Fighters</h1>
+        <h1 class="txtAF">Artigos Fighters</h1><br>
+
     <table class="tblLogin">
         @ViewBag.ErroLogin
         <tr>
-            <td>@Html.LabelFor(model => model.Email)</td>
+            <td>@Html.LabelFor(model => model.Email):</td>
             <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
             <td>@Html.ValidationMessageFor(model => model.Email)</td>
         </tr>
+		
         <tr>
-            <td> @Html.LabelFor(a => a.Senha)</td>
+            <td> @Html.LabelFor(a => a.Senha):</td>
             <td> @Html.PasswordFor(a => a.Senha, new { @class = "form-control" }) </td>
             <td> @Html.ValidationMessageFor(a => a.Senha) </td>
         </tr>

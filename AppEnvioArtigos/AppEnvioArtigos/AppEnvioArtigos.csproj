@@ -196,7 +196,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\avaliar.jpg" />
+    <Content Include="Img\chunli.png" />
     <Content Include="Img\EnviarArtigo.jpg" />
+    <Content Include="Img\ken-street.jpg" />
+    <Content Include="Img\ken.jpg" />
     <Content Include="Img\street-fighter-hd-png-4088605256-41b510e024-o-png-1025.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

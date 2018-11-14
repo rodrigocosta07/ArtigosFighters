@@ -23,11 +23,19 @@ textarea {
     max-width: 280px;
 }
 
-.txtAF{
-    font-family:'Times New Roman', Times, serif;
-    font-size:70px;
-    color: red;
-    text-align:center;
+.txtAF {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 70px;
+	color: red;
+	text-align: center;
+	text-shadow: 3px 3px #000000
+}
+.txtcadastro {
+	font-family: 'Tempus Sans ITC', Times, serif;
+	font-size: 50px;
+	color: red;
+	text-shadow: 3px 3px #000000;
+	//text-align: center;
 }
 
 .tblLogin{
@@ -38,4 +46,10 @@ textarea {
 #ImgLoginRyu{
     width:500px;
     
+}
+#ImgKen {
+	width: 500px;
+}
+#ImgChuli {
+	width: 300px;
 }
