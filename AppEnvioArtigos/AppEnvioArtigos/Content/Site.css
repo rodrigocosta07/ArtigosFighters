@@ -28,7 +28,7 @@ textarea {
 	font-size: 70px;
 	color: red;
 	text-align: center;
-	text-shadow: 3px 3px #000000
+	text-shadow: 3px 3px #ffffff;
 }
 .txtcadastro {
 	font-family: 'Tempus Sans ITC', Times, serif;
@@ -66,4 +66,7 @@ textarea {
 }
 #ImgChu {
 	width: 300px;
+}
+.bodylogin{
+	background-color: #000000;
 }

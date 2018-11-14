@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Login";
 }
+<body class="bodylogin" ></body>
 
 @using (Html.BeginForm())
 {
@@ -18,7 +19,7 @@
 
         <h1 class="txtAF">Artigos Fighters</h1><br>
 
-    <table class="tblLogin">
+    <table class="tblLogin"  >
         @ViewBag.ErroLogin
         <tr>
             <td>@Html.LabelFor(model => model.Email):</td>
@@ -38,7 +39,7 @@
                 <input type="submit" value="Login" class="btn btn-default" />
                 <button class="btn btn-default">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
             </td>
-            <td></td>
+            
         </tr>
 
     </table>
