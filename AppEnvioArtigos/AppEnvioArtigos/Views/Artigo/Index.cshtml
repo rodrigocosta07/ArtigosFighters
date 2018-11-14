@@ -115,8 +115,9 @@
             $(".btnDetalhes").click(function () {
 
                 var id = $(this).data("value");
+                alert(id);
 
-                $("#teste").load("/AvaliarArtigo/Create/" + id, function () {
+                $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
                     $('#myModal').modal("show");
                 });
             });

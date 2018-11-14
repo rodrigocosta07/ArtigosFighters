@@ -23,7 +23,7 @@ namespace AppEnvioArtigos.Controllers
         public virtual string ResumoArtigo { get; set; }
         public virtual Generos Genero { get; set; }
         public virtual HttpPostedFileBase Arquivo { get; set; }
-        
+
     }
 
     public class ArtigoController : Controller
@@ -31,25 +31,45 @@ namespace AppEnvioArtigos.Controllers
         private ArtigosContext db = new ArtigosContext();
 
         // GET: Artigo
-        public ActionResult Index(string Pesquisa )
+        public ActionResult Index(string Pesquisa, string Genero)
         {
             if (Session["usuarioLogadoID"] != null)
             {
                 ViewBag.usuario = Session["NomeUsuarioLogado"];
-                //  var listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
-                var consulta = db.Artigos.AsQueryable();
+                List<Artigos> listArtigo = new List<Artigos>();
+                listArtigo = db.Artigos.ToList();
+                switch (Genero)
+                {
+                    //  case Genero.Equals("Tecnologia"):
+                    // códi
+                    case "Tecnologia":
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Tecnologia).ToList();
+                        break;
+                    case "Ciencia":
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                        break;
+                    case "Medicina":
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                        break;
+                    case "Historia":
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                        break;
+                }
+                //listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                /*
                 if (!string.IsNullOrEmpty(Pesquisa))
-                    consulta = consulta.Where(c => c.Nome.Contains(Pesquisa));
-                consulta = consulta.OrderBy(c => c.Nome);
-
-                return View(consulta.ToList());
+                    listArtigo = listArtigo.Where(c => c.Nome.Contains(Pesquisa));
+                listArtigo = listArtigo.OrderBy(c => c.Nome);
+                
+                */
+                return View(listArtigo);
             }
             else
             {
                 return RedirectToAction("Login", "Participantes");
             }
-            
-            
+
+
         }
 
         // GET: Artigo/Details/5
@@ -74,7 +94,7 @@ namespace AppEnvioArtigos.Controllers
             return View(model);
         }
 
-       
+
         // POST: Artigo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -89,7 +109,7 @@ namespace AppEnvioArtigos.Controllers
                 Nome = model.Nome,
                 ResumoArtigo = model.ResumoArtigo,
                 Genero = model.Genero
-                
+
             };
 
             if (model.Arquivo != null)
@@ -114,7 +134,7 @@ namespace AppEnvioArtigos.Controllers
                 artigo.Participantes = listParticipante;
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
-                return RedirectToAction("Index" , "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(artigo);
@@ -123,9 +143,9 @@ namespace AppEnvioArtigos.Controllers
         public ActionResult DownloadDocumento(long id)
         {
             Artigos documento = db.Artigos.Find(id);
-            return File(documento.Artigopdf,"application/pdf", documento.Nome);
+            return File(documento.Artigopdf, "application/pdf", documento.Nome);
         }
-       
+
 
         protected override void Dispose(bool disposing)
         {
