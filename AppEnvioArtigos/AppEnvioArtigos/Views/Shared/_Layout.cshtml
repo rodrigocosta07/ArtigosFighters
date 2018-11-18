@@ -17,7 +17,7 @@
                     <button  class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    @Html.ActionLink("Artigos Fighters", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Artigos Fighters", "Index", "Artigo", new { area = "" }, new { @class = "navbar-brand" })
                     @if (Session["usuarioLogadoID"] != null)
                     {
                         @Html.ActionLink("Sair", "Login", "Participantes", new { area = "" }, new { @class = "navbar-brand" })

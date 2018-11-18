@@ -20,7 +20,10 @@
         <h1 class="txtAF">Artigos Fighters</h1><br>
 
     <table class="tblLogin"  >
-        @ViewBag.ErroLogin
+        <div class="text-center text-warning">
+            @ViewBag.ErroLogin
+        </div>
+        
         <tr>
             <td>@Html.LabelFor(model => model.Email):</td>
             <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>

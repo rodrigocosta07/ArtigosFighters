@@ -8,9 +8,6 @@ using System.Web;
 
 namespace AppEnvioArtigos.Models
 {
-
-   
-
     public class Participante
     {
 
@@ -37,8 +34,7 @@ namespace AppEnvioArtigos.Models
 
         public int NumInscricao { get; set; }
         
-        [Display(Name = "Local De Participação")]
-        public string LocalParticipacao { get; set; }
+     
     
         
         public string Senha { get; set; }
@@ -49,7 +45,7 @@ namespace AppEnvioArtigos.Models
         public string RepitaSenha { get; set; }
 
         public  Endereco Endereco { get; set; }
-        public  CartaoCredito CartaoCredito { get; set; }
+       
 
         public virtual ICollection<Artigos> Artigos { get; set; }
 

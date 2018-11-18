@@ -65,10 +65,20 @@ namespace AppEnvioArtigos.Controllers
 
             };
             if (ModelState.IsValid)
-            { 
-                db.AvaliarArtigos.Add(avaliacao);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Artigo");
+            {
+                if (!Session["usuarioLogadoID"].Equals(avaliacao.Artigos.Participantes))
+                {
+                    db.AvaliarArtigos.Add(avaliacao);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Artigo");
+                    
+                }
+                else
+                {
+                    ViewBag.ErroAvaliar = "Voce não pode avaliar seu artigo";
+                    return PartialView(avaliacao);
+                }
+                
             }
 
             return View(avaliarArtigo);

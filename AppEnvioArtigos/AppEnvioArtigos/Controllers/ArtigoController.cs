@@ -13,6 +13,7 @@ using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
 using AppEnvioArtigos.Models.ViewModel;
 using static AppEnvioArtigos.Models.Artigos;
+using X.PagedList;
 
 
 namespace AppEnvioArtigos.Controllers
@@ -34,13 +35,25 @@ namespace AppEnvioArtigos.Controllers
         // GET: Artigo
 
         
-        public ActionResult Index(string Pesquisa, string Genero)
+        public ActionResult Index(string Pesquisa, string Genero, string CurrentFilter, int? page)
         {
             if (Session["usuarioLogadoID"] != null)
             {
                 ViewBag.usuario = Session["NomeUsuarioLogado"];
                 List<Artigos> listArtigo = new List<Artigos>();
                 listArtigo = db.Artigos.ToList();
+
+                if (Pesquisa != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    Pesquisa = CurrentFilter;
+                }
+
+                ViewBag.CurrentFilter = Pesquisa;
+
                 switch (Genero)
                 {
                     case "Tecnologia":
@@ -62,8 +75,11 @@ namespace AppEnvioArtigos.Controllers
                 listArtigo = listArtigo.Where(c => c.Nome.Contains(Pesquisa)).ToList();
                 listArtigo = listArtigo.OrderBy(c => c.Nome).ToList();
 
-                
-                return View(listArtigo);
+
+                int pageSize = 5;
+                int pageNumber = (page ?? 1);
+
+                return View(listArtigo.ToPagedList(pageNumber, pageSize));
             }
             else
             {
@@ -136,7 +152,7 @@ namespace AppEnvioArtigos.Controllers
                 artigo.Participantes = listParticipante;
                 db.Artigos.Add(artigo);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Artigo");
             }
 
             return View(artigo);

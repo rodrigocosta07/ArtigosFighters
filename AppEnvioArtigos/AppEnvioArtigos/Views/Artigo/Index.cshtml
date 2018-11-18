@@ -1,5 +1,8 @@
-﻿@model IEnumerable<AppEnvioArtigos.Models.Artigos>
+﻿
+@model X.PagedList.IPagedList<AppEnvioArtigos.Models.Artigos>
+@using X.PagedList.Mvc;
 
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
 
     ViewBag.Title = "Artigos";
@@ -21,26 +24,26 @@
 
 @using (Html.BeginForm())
 {
-    <div>  
+    <div>
         Pesquisar:
         @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
         {
-       
+
             @Html.TextBox("Pesquisa")
             <input class="btn btn-dark" type="submit" value="Pesquisar" />
-  
-            
-        <div class="col col-lg-2">
-            <select class="form-control" data-val="true" data-val-required="genero"
-                    id="Genero" name="Genero">
-                <option selected>Selecione...</option>
-                <option value="Tecnologia"> Tecnologia</option>
-                <option value="Ciencia"> Ciencia</option>
-                <option value="Medicina"> Medicina</option>
-                <option value="Historia"> Historia</option>
-                <input class="btn btn-dark" type="submit" value="Filtrar" />
-            </select>
-        </div>      
+
+
+            <div class="col col-lg-2">
+                <select class="form-control" data-val="true" data-val-required="genero"
+                        id="Genero" name="Genero">
+                    <option selected>Selecione...</option>
+                    <option value="Tecnologia"> Tecnologia</option>
+                    <option value="Ciencia"> Ciencia</option>
+                    <option value="Medicina"> Medicina</option>
+                    <option value="Historia"> Historia</option>
+                    <input class="btn btn-dark" type="submit" value="Filtrar" />
+                </select>
+            </div>
         }
     </div>
 }
@@ -50,51 +53,59 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
+
             </th>
             <th>
-                <p>Resumo</p>
+                Resumo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genero)
+                Genero
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Artigopdf)
+                Artigo .PDF
+
             </th>
         </tr>
     </thead>
-    
+
 
     @foreach (var item in Model)
     {
-    <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelIodel => item.ResumoArtigo))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero)
-            </td>
-            <td>
-                <button class="btn btn-dark" id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelIodel => item.ResumoArtigo))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    <button class="btn btn-dark" id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
-            </td>
-            <td>
-                <a href="#" class="btn btn-light btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
-                <a href="#" class="btn btn-light btnDetails" data-value="@item.ArtigoID">Detalhes</a>
-                <!-- @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)
-                @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) ||-->
+                </td>
+                <td>
+                    <a href="#" class="btn btn-light btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
+                    <a href="#" class="btn btn-light btnDetails" data-value="@item.ArtigoID">Detalhes</a>
+                    <!-- @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)
+                    @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) ||-->
 
-            </td>
-        </tr>
-    </tbody>
-        
+                </td>
+            </tr>
+        </tbody>
+
     }
 
 </table>
+
+Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Genero = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 <script>
     function downloadArquivo(id) {
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
