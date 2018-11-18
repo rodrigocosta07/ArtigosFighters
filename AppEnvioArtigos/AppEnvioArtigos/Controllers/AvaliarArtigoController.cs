@@ -41,7 +41,7 @@ namespace AppEnvioArtigos.Controllers
         public ActionResult Create(int? artigo)
         {
             AvaliacaoViewModel avaliar = new AvaliacaoViewModel();
-            
+
             avaliar.ArtigoId = artigo.GetValueOrDefault();
             
             return PartialView(avaliar);

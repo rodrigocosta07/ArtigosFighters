@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AppEnvioArtigos.DAL;
 using AppEnvioArtigos.Models;
+using AppEnvioArtigos.Models.ViewModel;
 using static AppEnvioArtigos.Models.Artigos;
 
 
@@ -31,6 +32,8 @@ namespace AppEnvioArtigos.Controllers
         private ArtigosContext db = new ArtigosContext();
 
         // GET: Artigo
+
+        
         public ActionResult Index(string Pesquisa, string Genero)
         {
             if (Session["usuarioLogadoID"] != null)
@@ -40,8 +43,6 @@ namespace AppEnvioArtigos.Controllers
                 listArtigo = db.Artigos.ToList();
                 switch (Genero)
                 {
-                    //  case Genero.Equals("Tecnologia"):
-                    // códi
                     case "Tecnologia":
                         listArtigo = db.Artigos.Where(x => x.Genero == Generos.Tecnologia).ToList();
                         break;
@@ -49,19 +50,19 @@ namespace AppEnvioArtigos.Controllers
                         listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
                         break;
                     case "Medicina":
-                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Medicina).ToList();
                         break;
                     case "Historia":
-                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
+
+                        listArtigo = db.Artigos.Where(x => x.Genero == Generos.Historia).ToList();
                         break;
                 }
-                //listAtigo = db.Artigos.Where(x => x.Genero == Generos.Ciencia).ToList();
-                /*
+
                 if (!string.IsNullOrEmpty(Pesquisa))
-                    listArtigo = listArtigo.Where(c => c.Nome.Contains(Pesquisa));
-                listArtigo = listArtigo.OrderBy(c => c.Nome);
+                listArtigo = listArtigo.Where(c => c.Nome.Contains(Pesquisa)).ToList();
+                listArtigo = listArtigo.OrderBy(c => c.Nome).ToList();
+
                 
-                */
                 return View(listArtigo);
             }
             else
@@ -84,7 +85,8 @@ namespace AppEnvioArtigos.Controllers
             {
                 return HttpNotFound();
             }
-            return View(artigos);
+          
+            return PartialView(artigos);
         }
 
         // GET: Artigo/Create
@@ -145,6 +147,7 @@ namespace AppEnvioArtigos.Controllers
             Artigos documento = db.Artigos.Find(id);
             return File(documento.Artigopdf, "application/pdf", documento.Nome);
         }
+
 
 
         protected override void Dispose(bool disposing)

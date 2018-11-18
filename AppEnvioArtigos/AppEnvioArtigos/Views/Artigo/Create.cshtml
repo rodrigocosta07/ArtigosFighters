@@ -1,4 +1,4 @@
-﻿c@model AppEnvioArtigos.Controllers.ArtigoViewModel
+﻿@model AppEnvioArtigos.Controllers.ArtigoViewModel
 
 
 @{
@@ -23,8 +23,9 @@
 
             <h4 class="col-md-2">Selecione o genero:</h4>
             <div class="col-md-10">
-                <select data-val="true" data-val-required="genero"
+                <select class="form-control" data-val="true" data-val-required="genero"
                         id="Genero" name="Genero">
+                    <option selected>Selecione...</option>
                     <option value="Tecnologia"> Tecnologia</option>
                     <option value="Ciencia"> Ciencia</option>
                     <option value="Medicina"> Medicina</option>

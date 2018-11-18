@@ -11,15 +11,18 @@
 <body>
     @if (Session["usuarioLogadoID"] != null)
     {
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-dark bg-dark navbar-inverse fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button  class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
                     @Html.ActionLink("Artigos Fighters", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @if (Session["usuarioLogadoID"] != null)
+                    {
+                        @Html.ActionLink("Sair", "Login", "Participantes", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

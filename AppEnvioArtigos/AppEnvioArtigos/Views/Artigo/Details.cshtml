@@ -1,13 +1,13 @@
 ﻿@model AppEnvioArtigos.Models.Artigos
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes do Artigo";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do Artigo</h2>
 
 <div>
-    <h4>Artigos</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ResumoArtigo)
+          <p>Resumo</p>
         </dt>
 
         <dd>
@@ -27,16 +27,38 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Artigopdf)
+            @Html.DisplayNameFor(model => model.Genero)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Artigopdf)
+            @Html.DisplayFor(model => model.Genero)
         </dd>
 
     </dl>
+
+    <h3> Avaliações</h3>
+    <table class="table table-dark">
+        <tr>
+            <th>
+                <p>Notas</p>
+            </th>
+            <th>
+                <p>Comentarios</p>
+            </th>
+        </tr>
+        @foreach (var item in Model.Avaliacoes)
+        {
+            <tr>
+                <td>
+                    @item.NotaArtigo
+                </td>
+                <td>
+                    @item.ComentarioRevisao
+                </td>
+            </tr>
+        }
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ArtigoID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<button class="btn btn-dark">
+    @Html.ActionLink("Sair", "Index")
+</button>
