@@ -25,13 +25,13 @@
         </div>
         
         <tr>
-            <td>@Html.LabelFor(model => model.Email):</td>
+            <td class="text-light">@Html.LabelFor(model => model.Email):</td>
             <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
             <td>@Html.ValidationMessageFor(model => model.Email)</td>
         </tr>
 		
         <tr>
-            <td> @Html.LabelFor(a => a.Senha):</td>
+            <td class="text-light"> @Html.LabelFor(a => a.Senha):</td>
             <td> @Html.PasswordFor(a => a.Senha, new { @class = "form-control" }) </td>
             <td> @Html.ValidationMessageFor(a => a.Senha) </td>
         </tr>
@@ -39,8 +39,8 @@
             <td></td>
             <td>
                 <br />
-                <input type="submit" value="Login" class="btn btn-default" />
-                <button class="btn btn-default">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
+                <input type="submit" value="Login" class="btn btn-light" />
+                <button class="btn btn-light">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
             </td>
             
         </tr>

@@ -4,8 +4,10 @@
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
+                /**/
 
-    ViewBag.Title = "Artigos";
+
+                ViewBag.Title = "Artigos";
 }
 <h3 class="txtbemvindo"><b>Bem vindo, @ViewBag.usuario.<b></h3>
 <br />
@@ -16,10 +18,13 @@
 
 <p> <img src="~/Img/chunli.png" id="imgchu" align="right" style="position: relative;" margin-top: 150%; width="300px" /> </p>
 
+@if (Session["Perfil"].Equals("Participante"))
+{
+    <button class="btn btn-outline-dark">
+        @Html.ActionLink("Envie o Artigo", "Create")
+    </button>
+}
 
-<button class="btn btn-light">
-    @Html.ActionLink("Envie o Artigo", "Create")
-</button>
 <hr />
 
 @using (Html.BeginForm())
@@ -49,7 +54,7 @@
 }
 <hr />
 
-<table class="table table-hover table-light">
+<table class="table table-hover">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -85,11 +90,13 @@
                     @Html.DisplayFor(modelItem => item.Genero)
                 </td>
                 <td>
-                    <button class="btn btn-dark" id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
+                    <button class="btn btn-outline-dark" id="@item.ArtigoID" onclick="downloadArquivo(this.id)"> Download </button>
 
                 </td>
                 <td>
-                    <a href="#" class="btn btn-light btnDetalhes" data-value="@item.ArtigoID">Avaliar</a> |
+                    @if (Session["Perfil"].Equals("Revisor"))
+                    {
+                        <a href="#" class="btn btn-light btnDetalhes" data-value="@item.ArtigoID">Avaliar</a>}
                     <a href="#" class="btn btn-light btnDetails" data-value="@item.ArtigoID">Detalhes</a>
                     <!-- @Html.ActionLink("Avaliar", "Create", "AvaliarArtigo", new { artigo = item.ArtigoID }, null)
                     @Html.ActionLink("Details", "Details", new { id = item.ArtigoID }) ||-->
@@ -102,65 +109,65 @@
 
 </table>
 
-Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) De @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Genero = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, Genero = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
-<script>
+    <script>
     function downloadArquivo(id) {
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
     }
-</script>
+    </script>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="teste"></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="teste"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section scripts{
+    @section scripts{
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $.ajaxSetup({ cache: false });
+                $.ajaxSetup({ cache: false });
 
-            $(".btnDetalhes").click(function () {
+                $(".btnDetalhes").click(function () {
 
-                var id = $(this).data("value");
+                    var id = $(this).data("value");
 
 
-                $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
-                    $('#myModal').modal("show");
+                    $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
+                        $('#myModal').modal("show");
+                    });
                 });
             });
-        });
 
-    </script>
+        </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $.ajaxSetup({ cache: false });
+                $.ajaxSetup({ cache: false });
 
-            $(".btnDetails").click(function () {
+                $(".btnDetails").click(function () {
 
-                var id = $(this).data("value");
+                    var id = $(this).data("value");
 
 
-                $("#teste").load("/Artigo/Details/" + id, function () {
-                    $('#myModal').modal("show");
+                    $("#teste").load("/Artigo/Details/" + id, function () {
+                        $('#myModal').modal("show");
+                    });
                 });
             });
-        });
 
-    </script>
+        </script>
 
-}
+    }

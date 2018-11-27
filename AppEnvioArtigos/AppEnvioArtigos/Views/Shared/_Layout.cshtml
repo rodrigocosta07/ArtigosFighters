@@ -11,7 +11,7 @@
 <body>
     @if (Session["usuarioLogadoID"] != null)
     {
-        <div class="navbar navbar-dark bg-dark navbar-inverse fixed-top">
+        <div class="navbar  fixed-top navbar-dark bg-dark">
             <div class="container">
                 <div class="navbar-header">
                     <button  class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,7 +43,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-dark">
             <p>Artigos Fighters - &copy; @DateTime.Now.Year  </p>
         </footer>
     </div>
