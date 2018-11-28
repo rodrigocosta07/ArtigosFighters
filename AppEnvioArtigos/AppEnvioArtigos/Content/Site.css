@@ -35,21 +35,21 @@ textarea {
 	font-size: 50px;
 	color: red;
 	text-shadow: 3px 3px #000000;
-	//text-align: center;
+	
 }
 .txtartigo {
 	font-family: 'Tempus Sans ITC', Times, serif;
 	font-size: 50px;
 	color: red;
 	text-shadow: 1px 1px #000000;
-	//text-align: center;
+	
 }
 .txtbemvindo {
 	font-family: 'Tempus Sans ITC', Times, serif;
 	font-size: 50px;
 	color:blue;
 	text-shadow: 3px 3px #000000;
-	//text-align: center;
+	
 }
 
 .tblLogin{
@@ -58,7 +58,7 @@ textarea {
 }
 
 #ImgLoginRyu{
-    width:500px;
+    width:300px;
     
 }
 #ImgKen {

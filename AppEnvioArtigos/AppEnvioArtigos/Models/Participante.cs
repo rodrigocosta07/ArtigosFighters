@@ -44,6 +44,7 @@ namespace AppEnvioArtigos.Models
         //[Compare("Senha", ErrorMessage = "A senhe e a confirmação da senha são diferentes")]
         public string RepitaSenha { get; set; }
 
+        [Display(Name = "Endereço")]
         public  Endereco Endereco { get; set; }
        
 

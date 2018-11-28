@@ -1,9 +1,12 @@
 ﻿@model AppEnvioArtigos.Models.Participante
 
 @{
+    /**/
+
     ViewBag.Title = "Login";
 }
-<body class="bodylogin" ></body>
+<body class="bodylogin">
+</body>
 
 @using (Html.BeginForm())
 {
@@ -17,43 +20,49 @@
         </div>
     }
 
-        <h1 class="txtAF">Artigos Fighters</h1><br>
+    <h1 class="txtAF">Artigos Fighters</h1><br>
 
-    <table class="tblLogin"  >
-        <div class="text-center text-warning">
-            @ViewBag.ErroLogin
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="~/Img/Street-Fighter-PNG-File.png" id="ImgLoginRyu" />
         </div>
-        
-        <tr>
-            <td class="text-light">@Html.LabelFor(model => model.Email):</td>
-            <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
-            <td>@Html.ValidationMessageFor(model => model.Email)</td>
-        </tr>
-		
-        <tr>
-            <td class="text-light"> @Html.LabelFor(a => a.Senha):</td>
-            <td> @Html.PasswordFor(a => a.Senha, new { @class = "form-control" }) </td>
-            <td> @Html.ValidationMessageFor(a => a.Senha) </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <br />
-                <input type="submit" value="Login" class="btn btn-light" />
-                <button class="btn btn-light">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
-            </td>
-            
-        </tr>
+        <div class="col-sm-4">
+            <table>
+                <div class="text-center text-warning">
+                    @ViewBag.ErroLogin
+                </div>
 
-    </table>
+                <tr>
+                    <td class="text-light">@Html.LabelFor(model => model.Email):</td>
+                    <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+
+                <tr>
+                    <td class="text-light"> @Html.LabelFor(a => a.Senha):</td>
+                    <td> @Html.PasswordFor(a => a.Senha, new { @class = "form-control" }) </td>
+                    <td> @Html.ValidationMessageFor(a => a.Senha) </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="center">
+                        <br />
+                        <input type="submit" value="Login" class="btn btn-light" />
+                        <button class="btn btn-light">@Html.ActionLink("Cadastre-se", "Create", "Participantes")</button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="col-sm-4">
+            <img src="~/Img/street-fighter-hd-png-4088605256-41b510e024-o-png-1025.png" id="ImgLoginRyu" />
+        </div>
+    </div>
 
 
 
 
-    <p>
-        <img src="~/Img/street-fighter-hd-png-4088605256-41b510e024-o-png-1025.png" align="right" id="ImgLoginRyu" />    
-    </p>
-    
 }
 
 
