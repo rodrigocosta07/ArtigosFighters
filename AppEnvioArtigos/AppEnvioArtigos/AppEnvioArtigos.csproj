@@ -170,25 +170,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810302347231_initial.cs" />
-    <Compile Include="Migrations\201810302347231_initial.Designer.cs">
-      <DependentUpon>201810302347231_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811031506228_novasclasses.cs" />
-    <Compile Include="Migrations\201811031506228_novasclasses.Designer.cs">
-      <DependentUpon>201811031506228_novasclasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811031715571_newAlteracaoClasse.cs" />
-    <Compile Include="Migrations\201811031715571_newAlteracaoClasse.Designer.cs">
-      <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811121244231_teste.cs" />
-    <Compile Include="Migrations\201811121244231_teste.Designer.cs">
-      <DependentUpon>201811121244231_teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811181407449_AlteracaoClassParticipante.cs" />
-    <Compile Include="Migrations\201811181407449_AlteracaoClassParticipante.Designer.cs">
-      <DependentUpon>201811181407449_AlteracaoClassParticipante.cs</DependentUpon>
+    <Compile Include="Migrations\201812032238271_teste.cs" />
+    <Compile Include="Migrations\201812032238271_teste.Designer.cs">
+      <DependentUpon>201812032238271_teste.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Artigos.cs" />
@@ -215,6 +199,7 @@
     <Content Include="Img\EnviarArtigo.jpg" />
     <Content Include="Img\ken-street.jpg" />
     <Content Include="Img\ken.jpg" />
+    <Content Include="Img\RodrigoLindo.png" />
     <Content Include="Img\street-fighter-hd-png-4088605256-41b510e024-o-png-1025.png" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -305,27 +290,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810302347231_initial.resx">
-      <DependentUpon>201810302347231_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811031506228_novasclasses.resx">
-      <DependentUpon>201811031506228_novasclasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811031715571_newAlteracaoClasse.resx">
-      <DependentUpon>201811031715571_newAlteracaoClasse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811121244231_teste.resx">
-      <DependentUpon>201811121244231_teste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811181407449_AlteracaoClassParticipante.resx">
-      <DependentUpon>201811181407449_AlteracaoClassParticipante.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812032238271_teste.resx">
+      <DependentUpon>201812032238271_teste.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

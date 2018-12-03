@@ -1,17 +1,29 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div align="center">
+    <h1> Agradecimentos:</h1>
 
-<h3>Bem vindo @ViewBag.usuario</h3> <br />
+    <h1 style="color:blue">RODRIGO LINDOOO!!!</h1>
 
-<h1>RODRIGO LINDOOO</h1>
-
-<a href="@Url.Action("Create" , "Artigo")"><img src="~/Img/EnviarArtigo.jpg" width="30%" /> </a>
+    <img src="~/Img/RodrigoLindo.png" />
 
 
-@if (Session["Perfil"].Equals("Revisor"))
-{
-    <a href="@Url.Action("Index" , "Artigo")"><img src="~/Img/avaliar.jpg" width="30%" /> </a>
+    <h1>Precisamos só de 5 pontos para passar. Avalie com carinho.</h1>
+
+
+    <button id="btn" class="btn btn-outline-success" onclick="insereTexto()"> Clique aqui</button>
+
+    <div id="divTeste"> </div>
+    
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        function insereTexto() {
+            document.getElementById('divTeste').innerHTML = 'VALE  1 LITRÂO';
+        }
+    </script>
+
 }
-
------Melhores artigos----

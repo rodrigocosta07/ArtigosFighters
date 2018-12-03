@@ -7,13 +7,13 @@ namespace AppEnvioArtigos.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AlteracaoClassParticipante : IMigrationMetadata
+    public sealed partial class teste : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AlteracaoClassParticipante));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(teste));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811181407449_AlteracaoClassParticipante"; }
+            get { return "201812032238271_teste"; }
         }
         
         string IMigrationMetadata.Source

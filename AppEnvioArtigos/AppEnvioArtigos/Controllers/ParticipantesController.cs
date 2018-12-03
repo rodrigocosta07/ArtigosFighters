@@ -39,7 +39,7 @@ namespace AppEnvioArtigos.Controllers
             if (ModelState.IsValid)
             {
                 using (db)
-                {
+                {   // verifica se o email informado já esta no banco.
                     var consultaBanco = db.Participantes.Where(model => model.Email.Equals(participante.Email)).FirstOrDefault();
                     if (consultaBanco != null)
                     {
@@ -78,9 +78,9 @@ namespace AppEnvioArtigos.Controllers
             return View(participante);
         }
     
-
+        // Tela de login , serve para redenrizar (ação get) .
         public ActionResult Login()
-        {
+        {   // quando clica em sair, a session recebe null.    
             Session["usuarioLogadoID"] = null;
             return View();
         }

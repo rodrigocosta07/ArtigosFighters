@@ -111,7 +111,7 @@ namespace AppEnvioArtigos.Controllers
             else
             {
                 var media = artigos.Avaliacoes.Average(x => x.NotaArtigo);
-                ViewBag.media = "Media das notas:" + media;
+                ViewBag.media = "Media das notas: " + media.ToString("N2");
             }
             
 

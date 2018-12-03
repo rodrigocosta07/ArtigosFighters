@@ -3,7 +3,7 @@ namespace AppEnvioArtigos.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class teste : DbMigration
     {
         public override void Up()
         {
@@ -14,6 +14,7 @@ namespace AppEnvioArtigos.Migrations
                         ArtigoID = c.Int(nullable: false, identity: true),
                         Nome = c.String(nullable: false),
                         ResumoArtigo = c.String(nullable: false),
+                        Genero = c.Int(nullable: false),
                         Artigopdf = c.Binary(),
                         ContentType = c.String(),
                     })
@@ -26,8 +27,11 @@ namespace AppEnvioArtigos.Migrations
                         AvaliacaoID = c.Int(nullable: false, identity: true),
                         NotaArtigo = c.Single(nullable: false),
                         ComentarioRevisao = c.String(nullable: false),
+                        Artigos_ArtigoID = c.Int(),
                     })
-                .PrimaryKey(t => t.AvaliacaoID);
+                .PrimaryKey(t => t.AvaliacaoID)
+                .ForeignKey("dbo.Artigos", t => t.Artigos_ArtigoID)
+                .Index(t => t.Artigos_ArtigoID);
             
             CreateTable(
                 "dbo.Participante",
@@ -39,7 +43,6 @@ namespace AppEnvioArtigos.Migrations
                         Telefone = c.String(),
                         Email = c.String(),
                         NumInscricao = c.Int(nullable: false),
-                        LocalParticipacao = c.String(),
                         Senha = c.String(),
                         RepitaSenha = c.String(),
                         Endereco_Rua = c.String(),
@@ -49,24 +52,8 @@ namespace AppEnvioArtigos.Migrations
                         Endereco_Bairro = c.String(),
                         Endereco_Cidade = c.String(),
                         Endereco_Estado = c.String(),
-                        CartaoCredito_Numero = c.String(),
-                        CartaoCredito_Validade = c.DateTime(nullable: false),
-                        CartaoCredito_Marca = c.String(),
                     })
                 .PrimaryKey(t => t.ParticipanteID);
-            
-            CreateTable(
-                "dbo.AvaliarArtigoArtigos",
-                c => new
-                    {
-                        AvaliarArtigo_AvaliacaoID = c.Int(nullable: false),
-                        Artigos_ArtigoID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.AvaliarArtigo_AvaliacaoID, t.Artigos_ArtigoID })
-                .ForeignKey("dbo.AvaliarArtigo", t => t.AvaliarArtigo_AvaliacaoID, cascadeDelete: true)
-                .ForeignKey("dbo.Artigos", t => t.Artigos_ArtigoID, cascadeDelete: true)
-                .Index(t => t.AvaliarArtigo_AvaliacaoID)
-                .Index(t => t.Artigos_ArtigoID);
             
             CreateTable(
                 "dbo.ParticipanteArtigos",
@@ -87,14 +74,11 @@ namespace AppEnvioArtigos.Migrations
         {
             DropForeignKey("dbo.ParticipanteArtigos", "Artigos_ArtigoID", "dbo.Artigos");
             DropForeignKey("dbo.ParticipanteArtigos", "Participante_ParticipanteID", "dbo.Participante");
-            DropForeignKey("dbo.AvaliarArtigoArtigos", "Artigos_ArtigoID", "dbo.Artigos");
-            DropForeignKey("dbo.AvaliarArtigoArtigos", "AvaliarArtigo_AvaliacaoID", "dbo.AvaliarArtigo");
+            DropForeignKey("dbo.AvaliarArtigo", "Artigos_ArtigoID", "dbo.Artigos");
             DropIndex("dbo.ParticipanteArtigos", new[] { "Artigos_ArtigoID" });
             DropIndex("dbo.ParticipanteArtigos", new[] { "Participante_ParticipanteID" });
-            DropIndex("dbo.AvaliarArtigoArtigos", new[] { "Artigos_ArtigoID" });
-            DropIndex("dbo.AvaliarArtigoArtigos", new[] { "AvaliarArtigo_AvaliacaoID" });
+            DropIndex("dbo.AvaliarArtigo", new[] { "Artigos_ArtigoID" });
             DropTable("dbo.ParticipanteArtigos");
-            DropTable("dbo.AvaliarArtigoArtigos");
             DropTable("dbo.Participante");
             DropTable("dbo.AvaliarArtigo");
             DropTable("dbo.Artigos");
