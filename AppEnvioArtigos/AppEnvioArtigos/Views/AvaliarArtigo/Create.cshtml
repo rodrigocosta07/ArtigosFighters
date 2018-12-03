@@ -19,7 +19,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.NotaArtigo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.NotaArtigo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.NotaArtigo, new { htmlAttributes = new { @class = "form-control col-sm-2" } })
             @Html.ValidationMessageFor(model => model.NotaArtigo, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Avaliar" class="btn btn-light" />
+            <input type="submit" value="Avaliar" class="btn btn-dark" />
         </div>
     </div>
 </div>

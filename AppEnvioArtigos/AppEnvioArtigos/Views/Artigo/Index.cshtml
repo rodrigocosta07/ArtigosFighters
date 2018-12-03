@@ -4,10 +4,10 @@
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-                /**/
+    /**/
 
 
-                ViewBag.Title = "Artigos";
+    ViewBag.Title = "Artigos";
 }
 <h3 class="txtbemvindo"><b>Bem vindo, @ViewBag.usuario.<b></h3>
 <br />
@@ -15,9 +15,9 @@
 
 
 
-
+<!--
 <p> <img src="~/Img/chunli.png" id="imgchu" align="right" style="position: relative;" margin-top: 150%; width="300px" /> </p>
-
+-->
 @if (Session["Perfil"].Equals("Participante"))
 {
     <button class="btn btn-outline-dark">
@@ -33,22 +33,30 @@
         Pesquisar:
         @using (Html.BeginForm("Index", "Artigo", FormMethod.Get))
         {
+            <div class="row">
+                <div class="col-sm-4">
+                    @Html.TextBox("Pesquisa")
+                    <input class="btn btn-dark" type="submit" value="Pesquisar" />
+                </div>
 
-            @Html.TextBox("Pesquisa")
-            <input class="btn btn-dark" type="submit" value="Pesquisar" />
+                <div class="col col-sm">
+                    <select class="form-control col-sm-4" data-val="true" data-val-required="genero"
+                            id="Genero" name="Genero">
+                        <option selected>Selecione...</option>
+                        <option value="Tecnologia"> Tecnologia</option>
+                        <option value="Ciencia"> Ciencia</option>
+                        <option value="Medicina"> Medicina</option>
+                        <option value="Historia"> Historia</option>
+                        <input class=" btn btn-dark" type="submit" value="Filtrar" />
+                    </select>
 
+                </div>
 
-            <div class="col col-lg-2">
-                <select class="form-control" data-val="true" data-val-required="genero"
-                        id="Genero" name="Genero">
-                    <option selected>Selecione...</option>
-                    <option value="Tecnologia"> Tecnologia</option>
-                    <option value="Ciencia"> Ciencia</option>
-                    <option value="Medicina"> Medicina</option>
-                    <option value="Historia"> Historia</option>
-                    <input class="btn btn-dark" type="submit" value="Filtrar" />
-                </select>
             </div>
+
+
+
+
         }
     </div>
 }
@@ -108,66 +116,68 @@
     }
 
 </table>
-
-    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) De @Model.PageCount
+<div align="center" class="font-weight-light" >
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, Genero = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
-    <script>
+</div>
+
+<script>
     function downloadArquivo(id) {
         window.open('@Url.Action("DownloadDocumento", "Artigo", new { id = "_Id" })'.replace("_Id", id));
     }
-    </script>
+</script>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="teste"></div>
-                </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="teste"></div>
             </div>
         </div>
     </div>
+</div>
 
-    @section scripts{
+@section scripts{
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                $.ajaxSetup({ cache: false });
+            $.ajaxSetup({ cache: false });
 
-                $(".btnDetalhes").click(function () {
+            $(".btnDetalhes").click(function () {
 
-                    var id = $(this).data("value");
+                var id = $(this).data("value");
 
 
-                    $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
-                        $('#myModal').modal("show");
-                    });
+                $("#teste").load("/AvaliarArtigo/Create/?artigo=" + id, function () {
+                    $('#myModal').modal("show");
                 });
             });
+        });
 
-        </script>
+    </script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                $.ajaxSetup({ cache: false });
+            $.ajaxSetup({ cache: false });
 
-                $(".btnDetails").click(function () {
+            $(".btnDetails").click(function () {
 
-                    var id = $(this).data("value");
+                var id = $(this).data("value");
 
 
-                    $("#teste").load("/Artigo/Details/" + id, function () {
-                        $('#myModal').modal("show");
-                    });
+                $("#teste").load("/Artigo/Details/" + id, function () {
+                    $('#myModal').modal("show");
                 });
             });
+        });
 
-        </script>
+    </script>
 
-    }
+}

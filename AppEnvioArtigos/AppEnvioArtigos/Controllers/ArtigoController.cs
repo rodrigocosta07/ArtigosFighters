@@ -97,11 +97,24 @@ namespace AppEnvioArtigos.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Artigos artigos = db.Artigos.Find(id);
+            
             if (artigos == null)
             {
                 return HttpNotFound();
             }
-          
+            
+            var a = artigos.Avaliacoes.ToList();
+            if(a.Count == 0 )
+            {
+                ViewBag.media = "Não há avaliação para esse artigo no momento";
+            }
+            else
+            {
+                var media = artigos.Avaliacoes.Average(x => x.NotaArtigo);
+                ViewBag.media = "Media das notas:" + media;
+            }
+            
+
             return PartialView(artigos);
         }
 
