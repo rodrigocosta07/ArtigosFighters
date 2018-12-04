@@ -66,7 +66,7 @@ namespace AppEnvioArtigos.Controllers
 
                         db.Participantes.Add(participante);
                         db.SaveChanges();
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Login", "Participantes");
 
                     }
 
