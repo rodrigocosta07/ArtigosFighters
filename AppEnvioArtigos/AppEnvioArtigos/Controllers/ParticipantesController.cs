@@ -46,30 +46,10 @@ namespace AppEnvioArtigos.Controllers
                         ViewBag.Email = "Email Já cadastrado";
                         return View(participante);
                     }
-                    else
-                    {
-                        consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
-                        if (consultaBanco != null)
-                        {
-
-                            do
-                            {
-                                participante.NumInscricao++;
-                                consultaBanco = db.Participantes.Where(model => model.NumInscricao.Equals(participante.NumInscricao)).FirstOrDefault();
-
-
-                            } while (consultaBanco != null);
-                        }
-
-
-                        ViewBag.NumInscricao = participante.NumInscricao;
 
                         db.Participantes.Add(participante);
                         db.SaveChanges();
                         return RedirectToAction("Login", "Participantes");
-
-                    }
-
 
                 }
 

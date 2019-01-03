@@ -30,19 +30,14 @@ namespace AppEnvioArtigos.Models
 
         
         [DataType(DataType.EmailAddress)]
+        [Required]
         public string Email { get; set; }
 
-        public int NumInscricao { get; set; }
-        
-     
-    
-        
+        [Required]
+        [DataType(DataType.Password)]
         public string Senha { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirmar a senha")]
-        //[Compare("Senha", ErrorMessage = "A senhe e a confirmação da senha são diferentes")]
-        public string RepitaSenha { get; set; }
+    
 
         [Display(Name = "Endereço")]
         public  Endereco Endereco { get; set; }

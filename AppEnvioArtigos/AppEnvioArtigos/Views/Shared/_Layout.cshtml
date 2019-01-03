@@ -11,38 +11,32 @@
 <body>
     @if (Session["usuarioLogadoID"] != null)
     {
-        <div class="navbar  fixed-top navbar-dark bg-dark">
-            <div class="container">
-                <div class="navbar-header">
-                    <button  class="navbar-toggler"  type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    @Html.ActionLink("Artigos Fighters", "Index", "Artigo", new { area = "" }, new { @class = "navbar-brand" })
-                    @if (Session["usuarioLogadoID"] != null)
-                    {
-                        @Html.ActionLink("Sair", "Login", "Participantes", new { area = "" }, new { @class = "navbar-brand" })
-                    }
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                        @if (Session["usuarioLogadoID"] != null)
-                        {
-                            <li> @Html.ActionLink("Sair", "Login", "Participantes")  </li>
-
-                        }
-
-
-                    </ul>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @Html.ActionLink("Artigos Fighters", "Index", "Artigo", null, new { @class = "navbar-brand" })
+                    </li>
+                </ul>
+                @if (Session["usuarioLogadoID"] != null)
+                {
+               
+                    <a> @Html.ActionLink("Sair", "Login", "Participantes")  </a>
+               
+                }
+               
             </div>
-        </div>
+        </nav>
     }
 
     <div class="container body-content">
         @RenderBody()
-        <hr/>
+        <hr />
         <footer class="text-dark text-center">
             <p>Artigos Fighters - &copy; @DateTime.Now.Year  </p>
         </footer>

@@ -163,18 +163,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArtigoController.cs" />
     <Compile Include="Controllers\AvaliarArtigoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParticipantesController.cs" />
     <Compile Include="DAL\ArtigosContext.cs" />
     <Compile Include="DAL\ArtigosInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032238271_teste.cs" />
-    <Compile Include="Migrations\201812032238271_teste.Designer.cs">
-      <DependentUpon>201812032238271_teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Artigos.cs" />
     <Compile Include="Models\AvaliarArtigo.cs" />
     <Compile Include="Models\CartaoCredito.cs" />
@@ -260,18 +254,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Participantes\Create.cshtml" />
-    <Content Include="Views\Participantes\Index.cshtml" />
     <Content Include="Views\Participantes\Login.cshtml" />
     <Content Include="Views\Artigo\Create.cshtml" />
     <Content Include="Views\Artigo\Details.cshtml" />
     <Content Include="Views\Artigo\Index.cshtml" />
     <Content Include="Views\AvaliarArtigo\Create.cshtml" />
-    <Content Include="Views\AvaliarArtigo\Delete.cshtml" />
-    <Content Include="Views\AvaliarArtigo\Details.cshtml" />
-    <Content Include="Views\AvaliarArtigo\Edit.cshtml" />
-    <Content Include="Views\AvaliarArtigo\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -284,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -295,11 +284,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812032238271_teste.resx">
-      <DependentUpon>201812032238271_teste.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
